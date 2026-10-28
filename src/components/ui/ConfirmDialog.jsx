@@ -17,13 +17,13 @@ export function ConfirmDialog({
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-md" showClose={!isLoading}>
       <div className="flex flex-col items-center text-center py-2">
-        <div className="w-12 h-12 rounded-full border-2 border-[#0A0A0A] bg-[#F5F5F5] flex items-center justify-center mb-4">
-          <AlertTriangle className="w-6 h-6 text-[#0A0A0A]" />
+        <div className="w-12 h-12 rounded-full border-2 border-black dark:border-white bg-[#F5F5F5] dark:bg-[#111111] flex items-center justify-center mb-4 text-[#000000] dark:text-[#FFFFFF]">
+          <AlertTriangle className="w-6 h-6 text-current" />
         </div>
-        <h3 className="text-base font-bold uppercase tracking-wider text-[#0A0A0A] mb-2">
+        <h3 className="text-base font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-2">
           {title}
         </h3>
-        <p className="text-sm text-[#525252] leading-relaxed mb-6">
+        <p className="text-sm text-[#444444] dark:text-[#CCCCCC] leading-relaxed mb-6">
           {message}
         </p>
         <div className="flex items-center justify-center gap-3 w-full">

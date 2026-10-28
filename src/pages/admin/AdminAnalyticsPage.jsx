@@ -22,15 +22,15 @@ import { Button } from '../../components/ui/Button';
 import { formatCurrency } from '../../utils/formatters';
 
 // Grayscale shades for Pie & Charts
-const GRAYSCALE_PALETTE = ['#0A0A0A', '#404040', '#737373', '#A3A3A3', '#D4D4D4', '#E5E5E5'];
+const GRAYSCALE_PALETTE = ['#000000', '#222222', '#444444', '#777777', '#AAAAAA', '#DDDDDD'];
 
 function AnalyticsTooltip({ active, payload, label }) {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#0A0A0A] text-white p-3 rounded-btn border border-[#262626] font-mono text-xs shadow-modal">
-        <p className="font-bold border-b border-[#262626] pb-1 mb-1">{label}</p>
+      <div className="bg-black text-white p-3 rounded-btn border border-[#333333] font-mono text-xs shadow-modal">
+        <p className="font-bold border-b border-[#333333] pb-1 mb-1">{label}</p>
         {payload.map((entry, index) => (
-          <p key={`item-${index}`} className="flex justify-between gap-4 text-[#D4D4D4]">
+          <p key={`item-${index}`} className="flex justify-between gap-4 text-[#CCCCCC]">
             <span>{entry.name}:</span>
             <span className="font-bold text-white">
               {entry.name.toLowerCase().includes('revenue') || entry.name.toLowerCase().includes('average')
@@ -54,14 +54,14 @@ export function AdminAnalyticsPage() {
   };
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8 pb-12 text-[#000000] dark:text-[#FFFFFF]">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Quantitative Business Intelligence
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Financial & Volume Analytics
           </h1>
         </div>
@@ -109,12 +109,12 @@ export function AdminAnalyticsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
         {/* Chart 1: Average Order Value Trend (Line Chart) */}
-        <div className="bg-white border border-[#E5E5E5] rounded-card p-6 shadow-subtle">
+        <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 shadow-subtle">
           <div className="mb-6">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] font-mono">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] font-mono">
               Average Order Value Trend ($ USD)
             </h3>
-            <p className="text-xs text-[#525252] mt-0.5">
+            <p className="text-xs text-[#444444] dark:text-[#CCCCCC] mt-0.5">
               Fluctuations in basket value across calendar quarters
             </p>
           </div>
@@ -122,10 +122,10 @@ export function AdminAnalyticsPage() {
           <div className="w-full h-72">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={analytics.monthlySales}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E5" vertical={false} />
-                <XAxis dataKey="month" stroke="#525252" fontSize={11} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#DDDDDD" vertical={false} />
+                <XAxis dataKey="month" stroke="#888888" fontSize={11} tickLine={false} />
                 <YAxis
-                  stroke="#525252"
+                  stroke="#888888"
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
@@ -137,10 +137,10 @@ export function AdminAnalyticsPage() {
                   type="monotone"
                   dataKey="average"
                   name="Average Basket Value"
-                  stroke="#0A0A0A"
+                  stroke="#000000"
                   strokeWidth={2.5}
-                  dot={{ r: 4, fill: '#0A0A0A', stroke: '#FFFFFF', strokeWidth: 1.5 }}
-                  activeDot={{ r: 6, fill: '#0A0A0A' }}
+                  dot={{ r: 4, fill: '#000000', stroke: '#FFFFFF', strokeWidth: 1.5 }}
+                  activeDot={{ r: 6, fill: '#000000' }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -148,12 +148,12 @@ export function AdminAnalyticsPage() {
         </div>
 
         {/* Chart 2: Monthly Order Volume (Bar Chart) */}
-        <div className="bg-white border border-[#E5E5E5] rounded-card p-6 shadow-subtle">
+        <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 shadow-subtle">
           <div className="mb-6">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] font-mono">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] font-mono">
               Monthly Consignment Counts
             </h3>
-            <p className="text-xs text-[#525252] mt-0.5">
+            <p className="text-xs text-[#444444] dark:text-[#CCCCCC] mt-0.5">
               Total orders processed per calendar month
             </p>
           </div>
@@ -161,15 +161,15 @@ export function AdminAnalyticsPage() {
           <div className="w-full h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={analytics.monthlySales}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E5" vertical={false} />
-                <XAxis dataKey="month" stroke="#525252" fontSize={11} tickLine={false} />
-                <YAxis stroke="#525252" fontSize={11} tickLine={false} axisLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#DDDDDD" vertical={false} />
+                <XAxis dataKey="month" stroke="#888888" fontSize={11} tickLine={false} />
+                <YAxis stroke="#888888" fontSize={11} tickLine={false} axisLine={false} />
                 <Tooltip content={<AnalyticsTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px', fontFamily: "'Poppins', sans-serif" }} />
                 <Bar
                   dataKey="orders"
                   name="Orders Dispatched"
-                  fill="#0A0A0A"
+                  fill="#000000"
                   radius={[4, 4, 0, 0]}
                 />
               </BarChart>

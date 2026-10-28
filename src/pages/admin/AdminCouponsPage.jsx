@@ -108,12 +108,12 @@ export function AdminCouponsPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Concessions & Incentives
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Promotion Codes ({coupons.length})
           </h1>
         </div>
@@ -124,10 +124,10 @@ export function AdminCouponsPage() {
       </div>
 
       {/* Coupons Table */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card shadow-subtle overflow-hidden">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card shadow-subtle overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#F5F5F5] border-b border-[#E5E5E5] text-[#737373] uppercase text-[10px]">
+            <thead className="bg-[#EBEBEB] dark:bg-[#0A0A0A] border-b border-[#DDDDDD] dark:border-[#333333] text-[#444444] dark:text-[#CCCCCC] uppercase text-[10px]">
               <tr>
                 <th className="py-3 px-4">Coupon Code</th>
                 <th className="py-3 px-4">Type & Concession</th>
@@ -138,31 +138,32 @@ export function AdminCouponsPage() {
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E5E5E5]">
+            <tbody className="divide-y divide-[#DDDDDD] dark:divide-[#333333]">
               {coupons.map((c) => (
-                <tr key={c.id} className="hover:bg-[#FAFAFA] transition-colors">
+                <tr key={c.id} className="hover:bg-[#EBEBEB] dark:hover:bg-[#1C1C1C] focus-within:bg-[#EBEBEB] dark:focus-within:bg-[#1C1C1C] transition-colors">
                   <td className="py-3 px-4">
-                    <span className="font-bold text-[#0A0A0A] block">{c.code}</span>
-                    <span className="text-[10px] text-[#737373]">{c.description}</span>
+                    <span className="font-bold text-[#000000] dark:text-[#FFFFFF] block">{c.code}</span>
+                    <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC]">{c.description}</span>
                   </td>
-                  <td className="py-3 px-4 font-bold text-[#0A0A0A]">
+                  <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">
                     {c.type === 'percentage'
                       ? `${c.value}% Reduction`
                       : c.type === 'fixed'
                         ? `$${c.value} Deduction`
                         : 'Free Shipping'}
                   </td>
-                  <td className="py-3 px-4 text-[#525252]">${c.minSpend}</td>
-                  <td className="py-3 px-4 text-[#525252]">{c.usageCount || 0} redeems</td>
-                  <td className="py-3 px-4 text-[#737373]">{c.expiryDate}</td>
+                  <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">${c.minSpend}</td>
+                  <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">{c.usageCount || 0} redeems</td>
+                  <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">{c.expiryDate}</td>
                   <td className="py-3 px-4">
                     <button
                       type="button"
                       onClick={() => handleToggleStatus(c)}
-                      className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border ${c.status === 'active'
-                          ? 'bg-[#0A0A0A] text-white border-[#0A0A0A]'
-                          : 'bg-[#E5E5E5] text-[#737373] border-[#A3A3A3] line-through'
-                        }`}
+                      className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border transition-colors ${
+                        c.status === 'active'
+                          ? 'bg-black text-white border-black dark:bg-white dark:text-black dark:border-white'
+                          : 'bg-[#DDDDDD] text-[#444444] border-[#DDDDDD] dark:bg-[#222222] dark:text-[#888888] dark:border-[#333333] line-through'
+                      }`}
                     >
                       {c.status}
                     </button>
@@ -172,14 +173,14 @@ export function AdminCouponsPage() {
                       <button
                         type="button"
                         onClick={() => handleOpenEdit(c)}
-                        className="p-1.5 text-[#525252] hover:text-[#0A0A0A] rounded"
+                        className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] rounded"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         type="button"
                         onClick={() => setDeleteConfirmId(c.id)}
-                        className="p-1.5 text-[#525252] hover:text-[#0A0A0A] rounded"
+                        className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] rounded"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -258,7 +259,7 @@ export function AdminCouponsPage() {
             placeholder="e.g. 15% discount for solstice members"
           />
 
-          <div className="pt-4 border-t border-[#E5E5E5] flex justify-end gap-3">
+          <div className="pt-4 border-t border-[#DDDDDD] dark:border-[#333333] flex justify-end gap-3">
             <Button variant="outline" size="md" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>

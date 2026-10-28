@@ -2,20 +2,20 @@ import React from 'react';
 
 export function PrivacyPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1 text-[#000000] dark:text-[#FFFFFF]">
       <div className="mb-8">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
           Regulatory Protocol
         </span>
-        <h1 className="text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+        <h1 className="text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
           Privacy Policy
         </h1>
-        <p className="text-xs font-mono text-[#737373] mt-1">Last revised: October 2026</p>
+        <p className="text-xs font-mono text-[#444444] dark:text-[#CCCCCC] mt-1">Last revised: October 2026</p>
       </div>
 
-      <div className="space-y-6 text-xs sm:text-sm text-[#525252] leading-relaxed divide-y divide-[#E5E5E5]">
+      <div className="space-y-6 text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] leading-relaxed divide-y divide-[#DDDDDD] dark:divide-[#333333]">
         <div className="space-y-2">
-          <h2 className="font-mono text-sm font-bold uppercase text-[#0A0A0A]">
+          <h2 className="font-mono text-sm font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">
             01 / Local Storage Persistence
           </h2>
           <p>
@@ -24,7 +24,7 @@ export function PrivacyPage() {
         </div>
 
         <div className="pt-6 space-y-2">
-          <h2 className="font-mono text-sm font-bold uppercase text-[#0A0A0A]">
+          <h2 className="font-mono text-sm font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">
             02 / Zero Third-Party Trackers
           </h2>
           <p>
@@ -33,7 +33,7 @@ export function PrivacyPage() {
         </div>
 
         <div className="pt-6 space-y-2">
-          <h2 className="font-mono text-sm font-bold uppercase text-[#0A0A0A]">
+          <h2 className="font-mono text-sm font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">
             03 / Data Reset Rights
           </h2>
           <p>
@@ -47,20 +47,20 @@ export function PrivacyPage() {
 
 export function TermsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1 text-[#000000] dark:text-[#FFFFFF]">
       <div className="mb-8">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
           Statutory Terms
         </span>
-        <h1 className="text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+        <h1 className="text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
           Terms of Service
         </h1>
-        <p className="text-xs font-mono text-[#737373] mt-1">Last revised: October 2026</p>
+        <p className="text-xs font-mono text-[#444444] dark:text-[#CCCCCC] mt-1">Last revised: October 2026</p>
       </div>
 
-      <div className="space-y-6 text-xs sm:text-sm text-[#525252] leading-relaxed divide-y divide-[#E5E5E5]">
+      <div className="space-y-6 text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] leading-relaxed divide-y divide-[#DDDDDD] dark:divide-[#333333]">
         <div className="space-y-2">
-          <h2 className="font-mono text-sm font-bold uppercase text-[#0A0A0A]">
+          <h2 className="font-mono text-sm font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">
             01 / Portfolio Demonstration Context
           </h2>
           <p>
@@ -69,7 +69,7 @@ export function TermsPage() {
         </div>
 
         <div className="pt-6 space-y-2">
-          <h2 className="font-mono text-sm font-bold uppercase text-[#0A0A0A]">
+          <h2 className="font-mono text-sm font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">
             02 / Simulated Transactions
           </h2>
           <p>
@@ -78,7 +78,7 @@ export function TermsPage() {
         </div>
 
         <div className="pt-6 space-y-2">
-          <h2 className="font-mono text-sm font-bold uppercase text-[#0A0A0A]">
+          <h2 className="font-mono text-sm font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">
             03 / Intellectual Property
           </h2>
           <p>

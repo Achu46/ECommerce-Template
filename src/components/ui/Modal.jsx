@@ -72,19 +72,19 @@ export function Modal({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`relative w-full ${maxWidth} bg-white border-t sm:border border-[#E5E5E5] sm:rounded-card shadow-modal max-h-[92dvh] sm:max-h-[85vh] flex flex-col z-10 overflow-hidden ${className}`}
+            className={`relative w-full ${maxWidth} bg-white dark:bg-[#111111] border-t sm:border border-[#DDDDDD] dark:border-[#333333] sm:rounded-card shadow-modal max-h-[92dvh] sm:max-h-[85vh] flex flex-col z-10 overflow-hidden ${className}`}
           >
             {/* Header */}
             {(title || showClose) && (
-              <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E5E5] shrink-0 bg-white">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-[#DDDDDD] dark:border-[#333333] shrink-0 bg-[#F5F5F5] dark:bg-[#111111]">
                 <div>
                   {title && (
-                    <h3 id="modal-title" className="text-base font-bold uppercase tracking-wider text-[#0A0A0A]">
+                    <h3 id="modal-title" className="text-base font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF]">
                       {title}
                     </h3>
                   )}
                   {description && (
-                    <p id="modal-desc" className="text-xs text-[#525252] mt-0.5">
+                    <p id="modal-desc" className="text-xs text-[#444444] dark:text-[#CCCCCC] mt-0.5">
                       {description}
                     </p>
                   )}
@@ -94,7 +94,7 @@ export function Modal({
                     type="button"
                     onClick={onClose}
                     aria-label="Close dialog"
-                    className="p-2 -mr-2 text-[#525252] hover:text-[#0A0A0A] hover:bg-[#F5F5F5] rounded-btn transition-colors"
+                    className="p-2 -mr-2 text-[#000000] dark:text-[#FFFFFF] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] rounded-btn transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>

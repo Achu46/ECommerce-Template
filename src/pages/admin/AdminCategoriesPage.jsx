@@ -92,12 +92,12 @@ export function AdminCategoriesPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Classification Hierarchy
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Catalog Categories ({categories.length})
           </h1>
         </div>
@@ -115,38 +115,38 @@ export function AdminCategoriesPage() {
           return (
             <div
               key={cat.id}
-              className="bg-white border border-[#E5E5E5] rounded-card overflow-hidden shadow-subtle flex flex-col justify-between hover:border-[#0A0A0A] transition-all"
+              className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card overflow-hidden shadow-subtle flex flex-col justify-between hover:border-[#000000] dark:hover:border-[#FFFFFF] transition-all"
             >
               <div>
-                <div className="h-40 bg-[#F5F5F5] overflow-hidden relative border-b border-[#E5E5E5]">
+                <div className="h-40 bg-[#EBEBEB] dark:bg-[#0A0A0A] overflow-hidden relative border-b border-[#DDDDDD] dark:border-[#333333]">
                   <ProductImage
                     src={cat.image}
                     alt={cat.name}
                     aspectRatio="aspect-auto"
                     className="w-full h-full object-cover grayscale"
                   />
-                  <div className="absolute top-3 right-3 bg-[#0A0A0A] text-white text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
+                  <div className="absolute top-3 right-3 bg-black text-white dark:bg-white dark:text-black text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
                     {associatedProducts.length} Artifacts
                   </div>
                 </div>
 
                 <div className="p-5">
-                  <h3 className="text-base font-black uppercase tracking-tight text-[#0A0A0A] mb-1">
+                  <h3 className="text-base font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF] mb-1">
                     {cat.name}
                   </h3>
-                  <p className="text-xs text-[#525252] leading-relaxed mb-4 line-clamp-2">
+                  <p className="text-xs text-[#444444] dark:text-[#CCCCCC] leading-relaxed mb-4 line-clamp-2">
                     {cat.description || 'No description provided.'}
                   </p>
 
-                  <div className="space-y-1.5 pt-3 border-t border-[#F5F5F5]">
-                    <span className="text-[10px] font-mono uppercase font-bold text-[#737373] block">
+                  <div className="space-y-1.5 pt-3 border-t border-[#DDDDDD] dark:border-[#333333]">
+                    <span className="text-[10px] font-mono uppercase font-bold text-[#444444] dark:text-[#CCCCCC] block">
                       Subcategories:
                     </span>
                     <div className="flex flex-wrap gap-1">
                       {cat.subcategories?.map((sub, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 bg-[#F5F5F5] border border-[#E5E5E5] rounded text-[11px] font-mono text-[#0A0A0A]"
+                          className="px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] rounded text-[11px] font-mono text-[#000000] dark:text-[#FFFFFF]"
                         >
                           {sub}
                         </span>
@@ -157,14 +157,14 @@ export function AdminCategoriesPage() {
               </div>
 
               {/* Actions Footer */}
-              <div className="p-4 bg-[#FAFAFA] border-t border-[#E5E5E5] flex items-center justify-between text-xs font-mono">
-                <span className="text-[#737373]">Slug: /{cat.slug || cat.id}</span>
+              <div className="p-4 bg-[#EBEBEB] dark:bg-[#0A0A0A] border-t border-[#DDDDDD] dark:border-[#333333] flex items-center justify-between text-xs font-mono">
+                <span className="text-[#444444] dark:text-[#CCCCCC]">Slug: /{cat.slug || cat.id}</span>
                 <div className="flex items-center gap-1">
                   <button
                     type="button"
                     onClick={() => handleOpenEdit(cat)}
                     aria-label={`Edit ${cat.name}`}
-                    className="p-1.5 text-[#525252] hover:text-[#0A0A0A] rounded"
+                    className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] rounded"
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
@@ -172,7 +172,7 @@ export function AdminCategoriesPage() {
                     type="button"
                     onClick={() => setDeleteConfirmId(cat.id)}
                     aria-label={`Delete ${cat.name}`}
-                    className="p-1.5 text-[#525252] hover:text-[#0A0A0A] rounded"
+                    className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] rounded"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -230,7 +230,7 @@ export function AdminCategoriesPage() {
             placeholder="Wallets&#10;Belts&#10;Keyrings"
           />
 
-          <div className="pt-4 border-t border-[#E5E5E5] flex justify-end gap-3">
+          <div className="pt-4 border-t border-[#DDDDDD] dark:border-[#333333] flex justify-end gap-3">
             <Button variant="outline" size="md" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>

@@ -43,7 +43,7 @@ export function AnnouncementBar() {
   return (
     <aside
       aria-label="Promotional announcements"
-      className="bg-[#0A0A0A] text-white text-[11px] font-mono tracking-wider py-2 px-3 sm:px-6 border-b border-[#262626] relative z-40 overflow-hidden"
+      className="bg-[#000000] text-white text-[11px] font-mono tracking-wider py-2 px-3 sm:px-6 border-b border-[#333333] relative z-40 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 min-h-[22px]">
         {/* Rotating message */}

@@ -52,8 +52,8 @@ export function CheckoutPage() {
   if (cart.length === 0) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <h2 className="text-xl font-bold uppercase mb-2">No Items in Checkout</h2>
-        <p className="text-sm text-[#525252] mb-6">Your bag is currently empty. Please add items to proceed with simulated checkout.</p>
+        <h2 className="text-xl font-bold uppercase mb-2 text-[#000000] dark:text-[#FFFFFF]">No Items in Checkout</h2>
+        <p className="text-sm text-[#444444] dark:text-[#CCCCCC] mb-6">Your bag is currently empty. Please add items to proceed with simulated checkout.</p>
         <Link to="/products">
           <Button variant="primary">Return to Collection</Button>
         </Link>
@@ -138,15 +138,15 @@ export function CheckoutPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full flex-1">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full flex-1 text-[#000000] dark:text-[#FFFFFF]">
       {/* Disclaimer Banner */}
-      <div className="mb-8 p-4 bg-[#F5F5F5] border-2 border-[#0A0A0A] rounded-card flex items-start gap-3">
-        <Info className="w-5 h-5 text-[#0A0A0A] shrink-0 mt-0.5" />
+      <div className="mb-8 p-4 bg-[#F5F5F5] dark:bg-[#111111] border-2 border-black dark:border-white rounded-card flex items-start gap-3">
+        <Info className="w-5 h-5 text-[#000000] dark:text-[#FFFFFF] shrink-0 mt-0.5" />
         <div className="text-xs leading-relaxed">
-          <strong className="text-[#0A0A0A] uppercase tracking-wider block font-bold mb-0.5">
+          <strong className="text-[#000000] dark:text-[#FFFFFF] uppercase tracking-wider block font-bold mb-0.5">
             Simulated Demo Payment Gateway
           </strong>
-          <span className="text-[#525252]">
+          <span className="text-[#444444] dark:text-[#CCCCCC]">
             This is an interactive front-end portfolio demonstration. No real financial transaction will occur, and no real physical shipment will be dispatched. Form fields are pre-populated for rapid evaluation.
           </span>
         </div>
@@ -157,10 +157,10 @@ export function CheckoutPage() {
         <form onSubmit={handleSubmitOrder} className="lg:col-span-7 space-y-8">
 
           {/* Section 1: Customer Contact */}
-          <div className="bg-white border border-[#E5E5E5] rounded-card p-6 shadow-subtle space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] border-b border-[#E5E5E5] pb-3 flex items-center justify-between">
+          <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 shadow-subtle space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] border-b border-[#DDDDDD] dark:border-[#333333] pb-3 flex items-center justify-between">
               <span>01 / Contact Identification</span>
-              <Lock className="w-4 h-4 text-[#737373]" />
+              <Lock className="w-4 h-4 text-[#444444] dark:text-[#CCCCCC]" />
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -202,8 +202,8 @@ export function CheckoutPage() {
           </div>
 
           {/* Section 2: Consignment Address */}
-          <div className="bg-white border border-[#E5E5E5] rounded-card p-6 shadow-subtle space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] border-b border-[#E5E5E5] pb-3">
+          <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 shadow-subtle space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] border-b border-[#DDDDDD] dark:border-[#333333] pb-3">
               02 / Delivery Destination
             </h2>
 
@@ -255,10 +255,10 @@ export function CheckoutPage() {
           </div>
 
           {/* Section 3: Payment Method (Simulated) */}
-          <div className="bg-white border border-[#E5E5E5] rounded-card p-6 shadow-subtle space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] border-b border-[#E5E5E5] pb-3 flex items-center justify-between">
+          <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 shadow-subtle space-y-4">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] border-b border-[#DDDDDD] dark:border-[#333333] pb-3 flex items-center justify-between">
               <span>03 / Settlement Protocol</span>
-              <span className="text-[10px] font-mono px-2 py-0.5 bg-[#F5F5F5] rounded border border-[#E5E5E5]">
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-[#EEEEEE] dark:bg-[#1A1A1A] rounded border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF]">
                 MOCK SANDBOX
               </span>
             </h2>
@@ -269,43 +269,43 @@ export function CheckoutPage() {
                 type="button"
                 onClick={() => handleInputChange('paymentMethod', 'credit_card')}
                 className={`p-3 rounded-btn border text-left flex flex-col justify-between h-20 transition-all ${formData.paymentMethod === 'credit_card'
-                    ? 'border-2 border-[#0A0A0A] bg-[#FAFAFA]'
-                    : 'border-[#E5E5E5] hover:border-[#A3A3A3]'
+                    ? 'border-2 border-black dark:border-white bg-[#EEEEEE] dark:bg-[#1A1A1A]'
+                    : 'border-[#DDDDDD] dark:border-[#333333] hover:border-black dark:hover:border-white'
                   }`}
               >
-                <CreditCard className="w-5 h-5 text-[#0A0A0A]" />
-                <span className="text-xs font-mono font-bold uppercase">Credit Card</span>
+                <CreditCard className="w-5 h-5 text-[#000000] dark:text-[#FFFFFF]" />
+                <span className="text-xs font-mono font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">Credit Card</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleInputChange('paymentMethod', 'apple_pay')}
                 className={`p-3 rounded-btn border text-left flex flex-col justify-between h-20 transition-all ${formData.paymentMethod === 'apple_pay'
-                    ? 'border-2 border-[#0A0A0A] bg-[#FAFAFA]'
-                    : 'border-[#E5E5E5] hover:border-[#A3A3A3]'
+                    ? 'border-2 border-black dark:border-white bg-[#EEEEEE] dark:bg-[#1A1A1A]'
+                    : 'border-[#DDDDDD] dark:border-[#333333] hover:border-black dark:hover:border-white'
                   }`}
               >
-                <div className="w-5 h-5 rounded-full bg-[#0A0A0A] text-white flex items-center justify-center font-mono text-[9px] font-black">
+                <div className="w-5 h-5 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center font-mono text-[9px] font-black">
                   
                 </div>
-                <span className="text-xs font-mono font-bold uppercase">Apple Pay</span>
+                <span className="text-xs font-mono font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">Apple Pay</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => handleInputChange('paymentMethod', 'bank_transfer')}
                 className={`p-3 rounded-btn border text-left flex flex-col justify-between h-20 transition-all ${formData.paymentMethod === 'bank_transfer'
-                    ? 'border-2 border-[#0A0A0A] bg-[#FAFAFA]'
-                    : 'border-[#E5E5E5] hover:border-[#A3A3A3]'
+                    ? 'border-2 border-black dark:border-white bg-[#EEEEEE] dark:bg-[#1A1A1A]'
+                    : 'border-[#DDDDDD] dark:border-[#333333] hover:border-black dark:hover:border-white'
                   }`}
               >
-                <Building className="w-5 h-5 text-[#0A0A0A]" />
-                <span className="text-xs font-mono font-bold uppercase">Bank Wire</span>
+                <Building className="w-5 h-5 text-[#000000] dark:text-[#FFFFFF]" />
+                <span className="text-xs font-mono font-bold uppercase text-[#000000] dark:text-[#FFFFFF]">Bank Wire</span>
               </button>
             </div>
 
             {formData.paymentMethod === 'credit_card' && (
-              <div className="p-4 bg-[#F5F5F5] rounded-btn border border-[#E5E5E5] space-y-3 mt-3">
+              <div className="p-4 bg-white dark:bg-[#0A0A0A] rounded-btn border border-[#DDDDDD] dark:border-[#333333] space-y-3 mt-3">
                 <Input
                   label="Card Number"
                   value={formData.cardNumber}
@@ -340,27 +340,27 @@ export function CheckoutPage() {
         </form>
 
         {/* Right Column: Sticky Order Summary (5 cols) */}
-        <div className="lg:col-span-5 bg-white border border-[#E5E5E5] rounded-card p-6 shadow-subtle lg:sticky lg:top-28 space-y-6">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] border-b border-[#E5E5E5] pb-3">
+        <div className="lg:col-span-5 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 shadow-subtle lg:sticky lg:top-28 space-y-6">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] border-b border-[#DDDDDD] dark:border-[#333333] pb-3">
             Manifest ({cart.length} distinct lines)
           </h3>
 
           {/* Cart preview list */}
-          <div className="space-y-3 max-h-64 overflow-y-auto pr-1 divide-y divide-[#F5F5F5]">
+          <div className="space-y-3 max-h-64 overflow-y-auto pr-1 divide-y divide-[#DDDDDD] dark:divide-[#333333]">
             {cart.map((item) => (
               <div key={item.productId} className="pt-3 first:pt-0 flex items-center justify-between gap-3 text-xs">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-14 shrink-0 border border-[#E5E5E5] rounded overflow-hidden">
+                  <div className="w-12 h-14 shrink-0 border border-[#DDDDDD] dark:border-[#333333] rounded overflow-hidden">
                     <ProductImage src={item.image} alt={item.name} aspectRatio="aspect-[4/5]" />
                   </div>
                   <div>
-                    <h5 className="font-semibold text-[#0A0A0A] line-clamp-1">{item.name}</h5>
-                    <span className="text-[11px] text-[#737373] font-mono">
+                    <h5 className="font-semibold text-[#000000] dark:text-[#FFFFFF] line-clamp-1">{item.name}</h5>
+                    <span className="text-[11px] text-[#444444] dark:text-[#CCCCCC] font-mono">
                       Qty: {item.quantity} × {formatCurrency(item.price)}
                     </span>
                   </div>
                 </div>
-                <span className="font-mono font-bold text-[#0A0A0A]">
+                <span className="font-mono font-bold text-[#000000] dark:text-[#FFFFFF]">
                   {formatCurrency(item.price * item.quantity)}
                 </span>
               </div>
@@ -368,39 +368,39 @@ export function CheckoutPage() {
           </div>
 
           {/* Line Totals */}
-          <div className="space-y-2 text-xs font-mono border-t border-[#E5E5E5] pt-4">
-            <div className="flex justify-between text-[#525252]">
+          <div className="space-y-2 text-xs font-mono border-t border-[#DDDDDD] dark:border-[#333333] pt-4">
+            <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
               <span>Subtotal</span>
-              <span className="text-[#0A0A0A] font-semibold">{formatCurrency(subtotal)}</span>
+              <span className="text-[#000000] dark:text-[#FFFFFF] font-semibold">{formatCurrency(subtotal)}</span>
             </div>
 
             {discountAmount > 0 && (
-              <div className="flex justify-between text-[#0A0A0A] font-bold">
+              <div className="flex justify-between text-[#000000] dark:text-[#FFFFFF] font-bold">
                 <span>Coupon ({appliedCoupon?.code})</span>
                 <span>-{formatCurrency(discountAmount)}</span>
               </div>
             )}
 
-            <div className="flex justify-between text-[#525252]">
+            <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
               <span>Expedited Transit</span>
-              <span className="text-[#0A0A0A] font-semibold">
+              <span className="text-[#000000] dark:text-[#FFFFFF] font-semibold">
                 {shippingFee === 0 ? 'FREE' : formatCurrency(shippingFee)}
               </span>
             </div>
 
-            <div className="flex justify-between text-[#525252]">
+            <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
               <span>Sales Tax</span>
-              <span className="text-[#0A0A0A] font-semibold">{formatCurrency(taxAmount)}</span>
+              <span className="text-[#000000] dark:text-[#FFFFFF] font-semibold">{formatCurrency(taxAmount)}</span>
             </div>
 
-            <div className="flex justify-between text-base font-black text-[#0A0A0A] border-t border-[#E5E5E5] pt-3">
+            <div className="flex justify-between text-base font-black text-[#000000] dark:text-[#FFFFFF] border-t border-[#DDDDDD] dark:border-[#333333] pt-3">
               <span>Final Total</span>
               <span>{formatCurrency(total)}</span>
             </div>
           </div>
 
-          <div className="p-3 bg-[#FAFAFA] border border-[#E5E5E5] rounded-btn text-[11px] text-[#525252] flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#0A0A0A] shrink-0" />
+          <div className="p-3 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] rounded-btn text-[11px] text-[#444444] dark:text-[#CCCCCC] flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF] shrink-0" />
             <span>Simulated checkout session. Order will instantly reflect in live database.</span>
           </div>
         </div>

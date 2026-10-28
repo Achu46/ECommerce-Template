@@ -66,16 +66,16 @@ export function OrderTrackingPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 w-full flex-1">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 w-full flex-1 text-[#000000] dark:text-[#FFFFFF]">
       {/* Header */}
       <div className="text-center max-w-xl mx-auto mb-8 sm:mb-12">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-2">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-2">
           Consignment Telemetry
         </span>
-        <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A]">
+        <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
           Track Your Shipment
         </h1>
-        <p className="text-xs sm:text-sm text-[#525252] mt-2">
+        <p className="text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] mt-2">
           Enter your Order ID (e.g. ORD-98214) or Tracking Code to view real-time fulfillment state.
         </p>
 
@@ -92,7 +92,7 @@ export function OrderTrackingPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value.toUpperCase())}
             placeholder="e.g. ORD-98214 or MN-TRK-774920"
-            className="flex-1 min-h-[44px] px-3.5 py-2 text-xs font-mono uppercase border border-[#E5E5E5] rounded-btn bg-white focus:border-[#0A0A0A]"
+            className="flex-1 min-h-[44px] px-3.5 py-2 text-xs font-mono uppercase border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white"
           />
           <Button type="submit" variant="primary" size="md" icon={Search}>
             Track
@@ -100,7 +100,7 @@ export function OrderTrackingPage() {
         </form>
 
         {/* Quick Suggestion Pills */}
-        <div className="mt-3 flex items-center justify-center gap-2 text-[11px] font-mono text-[#737373]">
+        <div className="mt-3 flex items-center justify-center gap-2 text-[11px] font-mono text-[#444444] dark:text-[#CCCCCC]">
           <span>Recent Demo IDs:</span>
           {orders.slice(0, 3).map((o) => (
             <button
@@ -110,7 +110,7 @@ export function OrderTrackingPage() {
                 setQuery(o.id);
                 handleSearch(o.id);
               }}
-              className="underline text-[#0A0A0A] hover:text-[#525252]"
+              className="underline text-[#000000] dark:text-[#FFFFFF] hover:text-[#444444] dark:hover:text-[#CCCCCC]"
             >
               {o.id}
             </button>
@@ -120,24 +120,24 @@ export function OrderTrackingPage() {
 
       {/* Result Display */}
       {searchedOrder ? (
-        <div className="bg-white border border-[#E5E5E5] rounded-card p-6 sm:p-8 shadow-subtle space-y-8">
+        <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 sm:p-8 shadow-subtle space-y-8">
           {/* Order Header Meta */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
             <div>
               <div className="flex items-center gap-3 mb-1">
-                <h2 className="text-xl font-mono font-black text-[#0A0A0A]">
+                <h2 className="text-xl font-mono font-black text-[#000000] dark:text-[#FFFFFF]">
                   {searchedOrder.id}
                 </h2>
                 <Badge status={searchedOrder.status} size="md" />
               </div>
-              <p className="text-xs font-mono text-[#737373]">
+              <p className="text-xs font-mono text-[#444444] dark:text-[#CCCCCC]">
                 Placed on {formatDateTime(searchedOrder.createdAt)}
               </p>
             </div>
 
             <div className="text-left sm:text-right font-mono text-xs">
-              <span className="text-[#737373] block">Tracking Code</span>
-              <strong className="text-[#0A0A0A] font-bold">
+              <span className="text-[#444444] dark:text-[#CCCCCC] block">Tracking Code</span>
+              <strong className="text-[#000000] dark:text-[#FFFFFF] font-bold">
                 {searchedOrder.trackingNumber || 'Pending Courier Allocation'}
               </strong>
             </div>
@@ -151,11 +151,11 @@ export function OrderTrackingPage() {
                   const state = getStepStatus(st.key, searchedOrder.status);
                   const Icon = st.icon;
 
-                  let style = 'border-[#E5E5E5] text-[#A3A3A3] bg-[#FAFAFA]';
+                  let style = 'border-[#DDDDDD] dark:border-[#333333] text-[#888888] dark:text-[#666666] bg-white dark:bg-[#0A0A0A]';
                   if (state === 'completed') {
-                    style = 'border-[#0A0A0A] bg-[#0A0A0A] text-white';
+                    style = 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black';
                   } else if (state === 'current') {
-                    style = 'border-2 border-[#0A0A0A] bg-white text-[#0A0A0A] font-bold';
+                    style = 'border-2 border-black dark:border-white bg-white dark:bg-[#1A1A1A] text-[#000000] dark:text-[#FFFFFF] font-bold';
                   }
 
                   return (
@@ -175,50 +175,50 @@ export function OrderTrackingPage() {
               </div>
             </div>
           ) : (
-            <div className="p-4 bg-[#F5F5F5] border-l-4 border-[#0A0A0A] rounded-btn text-xs text-[#0A0A0A] font-mono">
+            <div className="p-4 bg-white dark:bg-[#0A0A0A] border-l-4 border-black dark:border-white rounded-btn text-xs text-[#000000] dark:text-[#FFFFFF] font-mono">
               <strong>ORDER CANCELLED</strong>
-              <p className="mt-1 text-[#525252]">
+              <p className="mt-1 text-[#444444] dark:text-[#CCCCCC]">
                 {searchedOrder.notes || 'This consignment was cancelled and refunded.'}
               </p>
             </div>
           )}
 
           {/* Details Grid: Consignment Manifest & Destination */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-[#E5E5E5] text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-[#DDDDDD] dark:border-[#333333] text-xs">
             {/* Destination */}
-            <div className="space-y-3 bg-[#FAFAFA] p-4 rounded-card border border-[#E5E5E5]">
-              <h3 className="font-mono font-bold uppercase tracking-wider text-[#0A0A0A] flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#0A0A0A]" /> Delivery Destination
+            <div className="space-y-3 bg-white dark:bg-[#0A0A0A] p-4 rounded-card border border-[#DDDDDD] dark:border-[#333333]">
+              <h3 className="font-mono font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF]" /> Delivery Destination
               </h3>
-              <p className="font-semibold text-[#0A0A0A]">{searchedOrder.customer.name}</p>
-              <p className="text-[#525252] leading-relaxed">
+              <p className="font-semibold text-[#000000] dark:text-[#FFFFFF]">{searchedOrder.customer.name}</p>
+              <p className="text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
                 {searchedOrder.shippingAddress?.street}<br />
                 {searchedOrder.shippingAddress?.city}, {searchedOrder.shippingAddress?.state} {searchedOrder.shippingAddress?.postalCode}<br />
                 {searchedOrder.shippingAddress?.country}
               </p>
-              <div className="pt-2 border-t border-[#E5E5E5] text-[11px] font-mono text-[#737373]">
+              <div className="pt-2 border-t border-[#DDDDDD] dark:border-[#333333] text-[11px] font-mono text-[#444444] dark:text-[#CCCCCC]">
                 Payment: {searchedOrder.paymentMethod}
               </div>
             </div>
 
             {/* Items Manifest */}
-            <div className="space-y-3 bg-[#FAFAFA] p-4 rounded-card border border-[#E5E5E5]">
-              <h3 className="font-mono font-bold uppercase tracking-wider text-[#0A0A0A] flex items-center gap-2">
-                <Package className="w-4 h-4 text-[#0A0A0A]" /> Consignment Contents
+            <div className="space-y-3 bg-white dark:bg-[#0A0A0A] p-4 rounded-card border border-[#DDDDDD] dark:border-[#333333]">
+              <h3 className="font-mono font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] flex items-center gap-2">
+                <Package className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF]" /> Consignment Contents
               </h3>
-              <div className="space-y-2 divide-y divide-[#E5E5E5]">
+              <div className="space-y-2 divide-y divide-[#DDDDDD] dark:divide-[#333333]">
                 {searchedOrder.items?.map((item, i) => (
                   <div key={i} className="pt-2 first:pt-0 flex items-center justify-between gap-3">
-                    <span className="truncate text-[#0A0A0A]">
+                    <span className="truncate text-[#000000] dark:text-[#FFFFFF]">
                       {item.quantity}× {item.name}
                     </span>
-                    <span className="font-mono font-bold text-[#0A0A0A] shrink-0">
+                    <span className="font-mono font-bold text-[#000000] dark:text-[#FFFFFF] shrink-0">
                       {formatCurrency(item.price * item.quantity)}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="pt-2 border-t border-[#E5E5E5] flex justify-between font-mono font-black text-sm">
+              <div className="pt-2 border-t border-[#DDDDDD] dark:border-[#333333] flex justify-between font-mono font-black text-sm text-[#000000] dark:text-[#FFFFFF]">
                 <span>Total Settled</span>
                 <span>{formatCurrency(searchedOrder.total)}</span>
               </div>
@@ -226,12 +226,12 @@ export function OrderTrackingPage() {
           </div>
         </div>
       ) : hasSearched ? (
-        <div className="bg-white border border-[#E5E5E5] rounded-card p-12 text-center max-w-md mx-auto">
-          <AlertCircle className="w-10 h-10 text-[#0A0A0A] mx-auto mb-3" />
-          <h3 className="text-base font-bold uppercase tracking-wider text-[#0A0A0A] mb-1">
+        <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-12 text-center max-w-md mx-auto">
+          <AlertCircle className="w-10 h-10 text-[#000000] dark:text-[#FFFFFF] mx-auto mb-3" />
+          <h3 className="text-base font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-1">
             Consignment Not Located
           </h3>
-          <p className="text-xs text-[#525252] mb-6">
+          <p className="text-xs text-[#444444] dark:text-[#CCCCCC] mb-6">
             No active record found matching query "{query}". Please verify your identifier or select an active order from below.
           </p>
           <div className="space-y-2">
@@ -243,7 +243,7 @@ export function OrderTrackingPage() {
                   setQuery(o.id);
                   handleSearch(o.id);
                 }}
-                className="w-full p-2 bg-[#F5F5F5] border border-[#E5E5E5] rounded-btn text-xs font-mono text-left flex justify-between items-center hover:border-[#0A0A0A]"
+                className="w-full p-2 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] rounded-btn text-xs font-mono text-left flex justify-between items-center text-[#000000] dark:text-[#FFFFFF] hover:border-black dark:hover:border-white"
               >
                 <span>{o.id} ({o.customer.name})</span>
                 <span className="font-bold">{o.status}</span>

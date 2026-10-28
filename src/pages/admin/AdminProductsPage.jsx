@@ -171,14 +171,14 @@ export function AdminProductsPage() {
   );
 
   return (
-    <div className="space-y-6 pb-12">
+    <div className="space-y-6 pb-12 text-[#000000] dark:text-[#FFFFFF]">
       {/* Title & Add Button */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Inventory Registry
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Catalog Artifacts ({products.length})
           </h1>
         </div>
@@ -189,9 +189,8 @@ export function AdminProductsPage() {
       </div>
 
       {/* Filter and Search Controls */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card p-4 shadow-subtle flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-4 shadow-subtle flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#737373] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
@@ -199,9 +198,12 @@ export function AdminProductsPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
-            placeholder="Search by title, SKU, or category..."
-            className="w-full min-h-[44px] pl-10 pr-4 py-2 text-xs border border-[#E5E5E5] rounded-input bg-white focus:border-[#0A0A0A]"
+            placeholder="Search...."
+            className="w-full min-h-[44px] pl-4 pr-12 py-2 text-xs border border-[#DDDDDD] dark:border-[#333333] rounded-xl bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white placeholder:text-[#444444]/60 dark:placeholder:text-[#CCCCCC]/60"
           />
+          <div className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-[#F5F5F5] dark:bg-[#161616] border border-[#DDDDDD] dark:border-[#333333] flex items-center justify-center text-[#000000] dark:text-[#FFFFFF] pointer-events-none shadow-subtle">
+            <Search className="w-4 h-4" />
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2.5">
@@ -211,7 +213,7 @@ export function AdminProductsPage() {
               setCategoryFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="min-h-[44px] px-3 text-xs font-mono border border-[#E5E5E5] rounded-btn bg-white focus:border-[#0A0A0A]"
+            className="min-h-[44px] px-3 text-xs font-mono border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white"
           >
             <option value="">All Categories</option>
             {categories.map((c) => (
@@ -227,7 +229,7 @@ export function AdminProductsPage() {
               setStockFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="min-h-[44px] px-3 text-xs font-mono border border-[#E5E5E5] rounded-btn bg-white focus:border-[#0A0A0A]"
+            className="min-h-[44px] px-3 text-xs font-mono border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white"
           >
             <option value="all">All Stock Levels</option>
             <option value="in">In Stock (&gt;10)</option>
@@ -238,10 +240,10 @@ export function AdminProductsPage() {
       </div>
 
       {/* Table: Responsive scroll container or card transformation */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card shadow-subtle overflow-hidden">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card shadow-subtle overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#F5F5F5] border-b border-[#E5E5E5] text-[#737373] uppercase text-[10px]">
+            <thead className="bg-white dark:bg-[#0A0A0A] border-b border-[#DDDDDD] dark:border-[#333333] text-[#444444] dark:text-[#CCCCCC] uppercase text-[10px]">
               <tr>
                 <th className="py-3 px-4">Artifact</th>
                 <th className="py-3 px-4">SKU</th>
@@ -252,27 +254,27 @@ export function AdminProductsPage() {
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E5E5E5]">
+            <tbody className="divide-y divide-[#DDDDDD] dark:divide-[#333333]">
               {paginatedList.map((p) => {
                 const isOut = p.stock === 0;
                 const isLow = p.stock > 0 && p.stock <= 10;
 
                 return (
-                  <tr key={p.id} className="hover:bg-[#FAFAFA] transition-colors">
+                  <tr key={p.id} className="hover:bg-[#EBEBEB] dark:hover:bg-[#1C1C1C] focus-within:bg-[#EBEBEB] dark:focus-within:bg-[#1C1C1C] transition-colors">
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-12 shrink-0 border border-[#E5E5E5] rounded overflow-hidden">
+                        <div className="w-10 h-12 shrink-0 border border-[#DDDDDD] dark:border-[#333333] rounded overflow-hidden">
                           <ProductImage src={p.images?.[0]} alt={p.name} aspectRatio="aspect-[4/5]" />
                         </div>
                         <div className="truncate max-w-[200px]">
-                          <span className="font-bold text-[#0A0A0A] block truncate">{p.name}</span>
-                          <span className="text-[10px] text-[#737373]">{p.subcategory || 'Signature'}</span>
+                          <span className="font-bold text-[#000000] dark:text-[#FFFFFF] block truncate">{p.name}</span>
+                          <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC]">{p.subcategory || 'Signature'}</span>
                         </div>
                       </div>
                     </td>
-                    <td className="py-3 px-4 font-bold text-[#525252]">{p.sku}</td>
-                    <td className="py-3 px-4 text-[#0A0A0A]">{p.category}</td>
-                    <td className="py-3 px-4 font-bold text-[#0A0A0A]">{formatCurrency(p.price)}</td>
+                    <td className="py-3 px-4 font-bold text-[#444444] dark:text-[#CCCCCC]">{p.sku}</td>
+                    <td className="py-3 px-4 text-[#000000] dark:text-[#FFFFFF]">{p.category}</td>
+                    <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">{formatCurrency(p.price)}</td>
                     <td className="py-3 px-4">
                       {isOut ? (
                         <Badge status="out_of_stock" size="sm" />
@@ -281,17 +283,17 @@ export function AdminProductsPage() {
                           {p.stock} left
                         </Badge>
                       ) : (
-                        <span className="font-bold text-[#0A0A0A]">{p.stock} units</span>
+                        <span className="font-bold text-[#000000] dark:text-[#FFFFFF]">{p.stock} units</span>
                       )}
                     </td>
-                    <td className="py-3 px-4 text-[#525252]">★ {p.rating.toFixed(1)}</td>
+                    <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">★ {p.rating.toFixed(1)}</td>
                     <td className="py-3 px-4 text-right">
                       <div className="flex items-center justify-end gap-1.5">
                         <button
                           type="button"
                           onClick={() => handleOpenEdit(p)}
                           aria-label={`Edit ${p.name}`}
-                          className="p-1.5 text-[#525252] hover:text-[#0A0A0A] hover:bg-[#F5F5F5] rounded transition-colors"
+                          className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] rounded transition-colors"
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
@@ -299,7 +301,7 @@ export function AdminProductsPage() {
                           type="button"
                           onClick={() => setDeleteConfirmId(p.id)}
                           aria-label={`Delete ${p.name}`}
-                          className="p-1.5 text-[#525252] hover:text-[#0A0A0A] hover:bg-[#F5F5F5] rounded transition-colors"
+                          className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] rounded transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -313,7 +315,7 @@ export function AdminProductsPage() {
         </div>
 
         {/* Pagination footer */}
-        <div className="p-4 border-t border-[#E5E5E5]">
+        <div className="p-4 border-t border-[#DDDDDD] dark:border-[#333333]">
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -413,7 +415,7 @@ export function AdminProductsPage() {
             placeholder="100% Virgin Wool&#10;Cupro interior lining&#10;Corozo buttons"
           />
 
-          <div className="pt-4 border-t border-[#E5E5E5] flex justify-end gap-3">
+          <div className="pt-4 border-t border-[#DDDDDD] dark:border-[#333333] flex justify-end gap-3">
             <Button variant="outline" size="md" onClick={() => setIsFormOpen(false)}>
               Cancel
             </Button>

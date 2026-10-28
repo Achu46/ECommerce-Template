@@ -15,15 +15,15 @@ export function EmptyState({
     <div
       role="region"
       aria-label={title}
-      className={`flex flex-col items-center justify-center text-center p-8 sm:p-12 border border-dashed border-[#E5E5E5] rounded-card bg-[#FAFAFA] ${className}`}
+      className={`flex flex-col items-center justify-center text-center p-8 sm:p-12 border border-dashed border-[#DDDDDD] dark:border-[#333333] rounded-card bg-[#F5F5F5] dark:bg-[#111111] ${className}`}
     >
-      <div className="w-14 h-14 rounded-full border border-[#0A0A0A] bg-white flex items-center justify-center mb-4 shadow-subtle">
-        <Icon className="w-7 h-7 text-[#0A0A0A]" />
+      <div className="w-14 h-14 rounded-full border border-[#DDDDDD] dark:border-[#333333] bg-white dark:bg-[#000000] flex items-center justify-center mb-4 shadow-subtle">
+        <Icon className="w-7 h-7 text-[#000000] dark:text-[#FFFFFF]" />
       </div>
-      <h3 className="text-base font-bold uppercase tracking-wider text-[#0A0A0A] mb-1.5">
+      <h3 className="text-base font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-1.5">
         {title}
       </h3>
-      <p className="text-xs sm:text-sm text-[#525252] max-w-sm mb-6 leading-relaxed">
+      <p className="text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] max-w-sm mb-6 leading-relaxed">
         {description}
       </p>
       {actionLabel && onAction && (

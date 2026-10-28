@@ -16,7 +16,7 @@ export function AdminLayout() {
   }
 
   return (
-    <div className="h-[100dvh] max-h-[100dvh] flex bg-[#FAFAFA] text-[#0A0A0A] font-sans antialiased overflow-hidden">
+    <div className="h-[100dvh] max-h-[100dvh] flex bg-white dark:bg-[#000000] text-[#000000] dark:text-[#FFFFFF] font-sans antialiased overflow-hidden">
       {/* Sidebar Navigation (Fixed / Sticky 100dvh with independent scroll) */}
       <AdminSidebar
         isMobileOpen={isMobileSidebarOpen}

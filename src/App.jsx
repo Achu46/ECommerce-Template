@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
 import { DataProvider } from './context/DataContext';
 import { AuthProvider } from './context/AuthContext';
@@ -15,17 +16,19 @@ export default function App() {
         v7_relativeSplatPath: true,
       }}
     >
-      <ToastProvider>
-        <DataProvider>
-          <AuthProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <AppRoutes />
-              </WishlistProvider>
-            </CartProvider>
-          </AuthProvider>
-        </DataProvider>
-      </ToastProvider>
+      <ThemeProvider>
+        <ToastProvider>
+          <DataProvider>
+            <AuthProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  <AppRoutes />
+                </WishlistProvider>
+              </CartProvider>
+            </AuthProvider>
+          </DataProvider>
+        </ToastProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

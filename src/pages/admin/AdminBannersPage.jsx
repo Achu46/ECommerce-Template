@@ -102,12 +102,12 @@ export function AdminBannersPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Visual Merchandising
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Editorial Banners ({banners.length})
           </h1>
         </div>
@@ -122,45 +122,45 @@ export function AdminBannersPage() {
         {banners.map((b) => (
           <div
             key={b.id}
-            className="bg-white border border-[#E5E5E5] rounded-card overflow-hidden shadow-subtle flex flex-col justify-between hover:border-[#0A0A0A] transition-all"
+            className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card overflow-hidden shadow-subtle flex flex-col justify-between hover:border-[#000000] dark:hover:border-[#FFFFFF] transition-all"
           >
             <div>
-              <div className="h-44 bg-[#0A0A0A] overflow-hidden relative">
+              <div className="h-44 bg-black dark:bg-[#0A0A0A] overflow-hidden relative border-b border-[#DDDDDD] dark:border-[#333333]">
                 <ProductImage
                   src={b.image}
                   alt={b.title}
                   aspectRatio="aspect-auto"
                   className="w-full h-full object-cover grayscale opacity-80"
                 />
-                <div className="absolute top-3 left-3 bg-[#0A0A0A] text-white text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
+                <div className="absolute top-3 left-3 bg-black text-white dark:bg-white dark:text-black text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
                   {b.placement}
                 </div>
                 {b.badge && (
-                  <div className="absolute top-3 right-3 bg-white text-[#0A0A0A] text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
+                  <div className="absolute top-3 right-3 bg-white text-black dark:bg-[#0A0A0A] dark:text-white border border-[#DDDDDD] dark:border-[#333333] text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
                     {b.badge}
                   </div>
                 )}
               </div>
 
               <div className="p-5">
-                <h3 className="text-base font-black uppercase tracking-tight text-[#0A0A0A] mb-1">
+                <h3 className="text-base font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF] mb-1">
                   {b.title}
                 </h3>
-                <h4 className="text-xs font-mono text-[#737373] mb-2">{b.subtitle}</h4>
-                <p className="text-xs text-[#525252] leading-relaxed line-clamp-2">
+                <h4 className="text-xs font-mono text-[#444444] dark:text-[#CCCCCC] mb-2">{b.subtitle}</h4>
+                <p className="text-xs text-[#444444] dark:text-[#CCCCCC] leading-relaxed line-clamp-2">
                   {b.description}
                 </p>
               </div>
             </div>
 
-            <div className="p-4 bg-[#FAFAFA] border-t border-[#E5E5E5] flex items-center justify-between text-xs font-mono">
-              <span className="text-[#525252]">CTA: {b.ctaText}</span>
+            <div className="p-4 bg-[#EBEBEB] dark:bg-[#0A0A0A] border-t border-[#DDDDDD] dark:border-[#333333] flex items-center justify-between text-xs font-mono">
+              <span className="text-[#444444] dark:text-[#CCCCCC]">CTA: {b.ctaText}</span>
               <div className="flex items-center gap-1">
                 <button
                   type="button"
                   onClick={() => handleOpenEdit(b)}
                   aria-label={`Edit ${b.title}`}
-                  className="p-1.5 text-[#525252] hover:text-[#0A0A0A] rounded"
+                  className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] rounded"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
@@ -168,7 +168,7 @@ export function AdminBannersPage() {
                   type="button"
                   onClick={() => setDeleteConfirmId(b.id)}
                   aria-label={`Delete ${b.title}`}
-                  className="p-1.5 text-[#525252] hover:text-[#0A0A0A] rounded"
+                  className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] rounded"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -248,7 +248,7 @@ export function AdminBannersPage() {
             placeholder="Explanatory copy for the promotional banner..."
           />
 
-          <div className="pt-4 border-t border-[#E5E5E5] flex justify-end gap-3">
+          <div className="pt-4 border-t border-[#DDDDDD] dark:border-[#333333] flex justify-end gap-3">
             <Button variant="outline" size="md" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>

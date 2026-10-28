@@ -6,6 +6,8 @@ import { INITIAL_ORDERS } from '../data/initialOrders';
 import { INITIAL_CUSTOMERS } from '../data/initialCustomers';
 import { INITIAL_COUPONS } from '../data/initialCoupons';
 import { INITIAL_BANNERS, INITIAL_SETTINGS } from '../data/initialBanners';
+import { INITIAL_REVIEWS } from '../data/initialReviews';
+import { INITIAL_OFFERS } from '../data/initialOffers';
 
 const DataContext = createContext(null);
 
@@ -17,6 +19,9 @@ export function DataProvider({ children }) {
   const [coupons, setCoupons] = useLocalStorage('mono_coupons', INITIAL_COUPONS);
   const [banners, setBanners] = useLocalStorage('mono_banners', INITIAL_BANNERS);
   const [settings, setSettings] = useLocalStorage('mono_settings', INITIAL_SETTINGS);
+  const [reviews, setReviews] = useLocalStorage('mono_reviews', INITIAL_REVIEWS);
+  const [offers, setOffers] = useLocalStorage('mono_offers', INITIAL_OFFERS);
+  const [isOfferEnabled, setIsOfferEnabled] = useLocalStorage('mono_offer_enabled', true);
 
   // PRODUCT CRUD
   const addProduct = (newProduct) => {
@@ -159,6 +164,95 @@ export function DataProvider({ children }) {
     setBanners((prev) => prev.filter((b) => b.id !== id));
   };
 
+  // REVIEWS CRUD
+  const addReview = (reviewData) => {
+    const id = `rev-${Date.now()}`;
+    const newRev = {
+      id,
+      date: new Date().toISOString().split('T')[0],
+      status: 'approved',
+      verifiedPurchase: true,
+      rating: 5,
+      ...reviewData
+    };
+    setReviews((prev) => [newRev, ...prev]);
+    return newRev;
+  };
+
+  const updateReview = (id, updatedFields) => {
+    setReviews((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, ...updatedFields } : r))
+    );
+  };
+
+  const deleteReview = (id) => {
+    setReviews((prev) => prev.filter((r) => r.id !== id));
+  };
+
+  const toggleReviewStatus = (id, newStatus) => {
+    setReviews((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, status: newStatus } : r))
+    );
+  };
+
+  // OFFERS CRUD
+  const addOffer = (offerData) => {
+    const id = `offer-${Date.now()}`;
+    const newOffer = {
+      id,
+      status: 'scheduled',
+      days: 1,
+      hours: 24,
+      minutes: 0,
+      seconds: 0,
+      autoReset: true,
+      ...offerData
+    };
+    setOffers((prev) => [newOffer, ...prev]);
+    return newOffer;
+  };
+
+  const updateOffer = (id, updatedFields) => {
+    setOffers((prev) =>
+      prev.map((o) => (o.id === id ? { ...o, ...updatedFields } : o))
+    );
+  };
+
+  const deleteOffer = (id) => {
+    setOffers((prev) => prev.filter((o) => o.id !== id));
+  };
+
+  const setActiveOffer = (id) => {
+    setOffers((prev) =>
+      prev.map((o) => ({
+        ...o,
+        status: o.id === id ? 'active' : (o.status === 'active' ? 'ended' : o.status)
+      }))
+    );
+  };
+
+  const toggleOfferEnabled = (val) => {
+    setIsOfferEnabled((prev) => (typeof val === 'boolean' ? val : !prev));
+  };
+
+  const toggleOfferStatus = (id) => {
+    setOffers((prev) =>
+      prev.map((o) => {
+        if (o.id === id) {
+          const nextStatus = o.status === 'disabled' ? 'active' : 'disabled';
+          return { ...o, status: nextStatus };
+        }
+        return o;
+      })
+    );
+  };
+
+  const activeOffer = useMemo(() => {
+    if (!isOfferEnabled) return null;
+    const found = offers.find((o) => o.status === 'active');
+    return found || offers[0] || null;
+  }, [offers, isOfferEnabled]);
+
   // SETTINGS
   const updateSettings = (newSettings) => {
     setSettings((prev) => ({ ...prev, ...newSettings }));
@@ -173,6 +267,8 @@ export function DataProvider({ children }) {
     setCoupons(INITIAL_COUPONS);
     setBanners(INITIAL_BANNERS);
     setSettings(INITIAL_SETTINGS);
+    setReviews(INITIAL_REVIEWS);
+    setOffers(INITIAL_OFFERS);
     window.localStorage.removeItem('mono_cart');
     window.localStorage.removeItem('mono_wishlist');
     return true;
@@ -283,6 +379,13 @@ export function DataProvider({ children }) {
         coupons,
         banners,
         settings,
+        reviews,
+        offers,
+        activeOffer,
+        isOfferEnabled,
+        toggleOfferEnabled,
+        setIsOfferEnabled,
+        toggleOfferStatus,
         analytics,
         // Product Actions
         addProduct,
@@ -306,6 +409,16 @@ export function DataProvider({ children }) {
         addBanner,
         updateBanner,
         deleteBanner,
+        // Review Actions
+        addReview,
+        updateReview,
+        deleteReview,
+        toggleReviewStatus,
+        // Offer Actions
+        addOffer,
+        updateOffer,
+        deleteOffer,
+        setActiveOffer,
         // Settings & Reset
         updateSettings,
         resetDemoData,

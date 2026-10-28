@@ -16,20 +16,20 @@ export function ProductRating({ rating = 0, count, showCount = true, size = 'sm'
             <Star
               key={star}
               className={`${starSize} ${isFilled
-                  ? 'fill-[#0A0A0A] text-[#0A0A0A]'
+                  ? 'fill-black text-black dark:fill-white dark:text-white'
                   : isHalf
                     ? 'fill-[#737373] text-[#737373]'
-                    : 'text-[#D4D4D4]'
+                    : 'text-[#DDDDDD] dark:text-[#333333]'
                 }`}
             />
           );
         })}
       </div>
-      <span className="font-mono text-xs font-semibold text-[#0A0A0A]">
+      <span className="font-mono text-xs font-semibold text-[#000000] dark:text-[#FFFFFF]">
         {rounded.toFixed(1)}
       </span>
       {showCount && count !== undefined && (
-        <span className="text-[11px] text-[#525252] font-mono">
+        <span className="text-[11px] text-[#444444] dark:text-[#CCCCCC] font-mono">
           ({count})
         </span>
       )}

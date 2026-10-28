@@ -14,6 +14,8 @@ import { WishlistPage } from '../pages/store/WishlistPage';
 import { CheckoutPage } from '../pages/store/CheckoutPage';
 import { LoginPage } from '../pages/store/LoginPage';
 import { RegisterPage } from '../pages/store/RegisterPage';
+import { ForgotPasswordPage } from '../pages/store/ForgotPasswordPage';
+import { ResetPasswordPage } from '../pages/store/ResetPasswordPage';
 import { AccountPage } from '../pages/store/AccountPage';
 import { OrderTrackingPage } from '../pages/store/OrderTrackingPage';
 import { OffersPage } from '../pages/store/OffersPage';
@@ -33,6 +35,8 @@ import { AdminCouponsPage } from '../pages/admin/AdminCouponsPage';
 import { AdminAnalyticsPage } from '../pages/admin/AdminAnalyticsPage';
 import { AdminBannersPage } from '../pages/admin/AdminBannersPage';
 import { AdminSettingsPage } from '../pages/admin/AdminSettingsPage';
+import { AdminReviewsPage } from '../pages/admin/AdminReviewsPage';
+import { AdminOffersPage } from '../pages/admin/AdminOffersPage';
 
 // 404
 import { NotFoundPage } from '../pages/NotFoundPage';
@@ -63,6 +67,8 @@ export function AppRoutes() {
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="reset-password/:token" element={<ResetPasswordPage />} />
           <Route path="account" element={<AccountPage />} />
           <Route path="order-tracking" element={<OrderTrackingPage />} />
           <Route path="offers" element={<OffersPage />} />
@@ -80,6 +86,8 @@ export function AppRoutes() {
           <Route path="products" element={<AdminProductsPage />} />
           <Route path="orders" element={<AdminOrdersPage />} />
           <Route path="customers" element={<AdminCustomersPage />} />
+          <Route path="reviews" element={<AdminReviewsPage />} />
+          <Route path="offers" element={<AdminOffersPage />} />
           <Route path="categories" element={<AdminCategoriesPage />} />
           <Route path="inventory" element={<AdminInventoryPage />} />
           <Route path="coupons" element={<AdminCouponsPage />} />

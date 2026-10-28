@@ -3,17 +3,86 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #FFFFFF;
-  --color-surface: #FFFFFF;
-  --color-subtle: #F5F5F5;
-  --color-primary: #0A0A0A;
-  --color-secondary: #525252;
-  --color-muted: #A3A3A3;
-  --color-border: #E5E5E5;
-  --color-border-strong: #0A0A0A;
-  --color-button-hover: #262626;
+  --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bg: #FFFFFF;
+  --card: #F5F5F5;
+  --surface: #F5F5F5;
+  --surface-subtle: #F5F5F5;
+  --surface-elevated: #FFFFFF;
+  --input-bg: #FFFFFF;
+  --hover: #EEEEEE;
+  --border: #DDDDDD;
+  --border-strong: #000000;
+  --text: #000000;
+  --text-secondary: #444444;
+
+  --btn-bg: #000000;
+  --btn-text: #FFFFFF;
+  --btn-hover: #333333;
+
+  --color-primary: #000000;
+  --color-button-hover: #333333;
   --color-disabled-bg: #E5E5E5;
-  --color-disabled-text: #A3A3A3;
+  --color-disabled-text: rgba(0, 0, 0, 0.6);
+  --color-error: #DC2626;
+  --color-success: #10B981;
+  --color-warning: #D97706;
+
+  /* Legacy variable mappings */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-card: var(--card);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-secondary);
+}
+
+.dark,
+[data-theme="dark"] {
+  --bg: #000000;
+  --card: #111111;
+  --surface: #111111;
+  --surface-subtle: #111111;
+  --surface-elevated: #161616;
+  --input-bg: #0A0A0A;
+  --hover: #1A1A1A;
+  --border: #333333;
+  --border-strong: #FFFFFF;
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+
+  --btn-bg: #FFFFFF;
+  --btn-text: #000000;
+  --btn-hover: #E5E5E5;
+
+  --color-primary: #FFFFFF;
+  --color-button-hover: #E5E5E5;
+  --color-disabled-bg: #1A1A1A;
+  --color-disabled-text: rgba(255, 255, 255, 0.6);
+  --color-error: #EF4444;
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+
+  /* Legacy variable mappings */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-card: var(--card);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-secondary);
+}
+
+/* Smooth 200ms transitions when actively switching themes (not on initial load) */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+  transition-delay: 0s !important;
 }
 
 /* Global scrollbar rules in strict grayscale */
@@ -22,21 +91,59 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F5F5;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D4;
+  background: var(--border);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A3A3A3;
+  background: var(--text-secondary);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #000000;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* Dedicated slim 6px sidebar scrollbar */
+.sidebar-scrollbar {
+  scrollbar-gutter: stable;
+}
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border) !important;
+  border-radius: 9999px !important;
+}
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary) !important;
+}
+.dark .sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.dark .sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #333333 !important;
+  border-radius: 9999px !important;
+}
+.dark .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555555 !important;
 }
 
 /* Universal Typography: Enforce Poppins everywhere */
 *,
 *::before,
 *::after {
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Base resets & natural viewport scrolling */
@@ -46,7 +153,9 @@ html {
   width: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 body {
@@ -55,39 +164,336 @@ body {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  background-color: var(--color-bg);
-  color: var(--color-primary);
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea,
-kbd,
-pre,
-code {
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* ─────────────────────────────────────────────────────────────
+   GLOBAL THEME SYSTEM: HIERARCHICAL TEXT COLORS
+   Light mode: Primary (#000000), Secondary (#444444)
+   Dark mode: Primary (#FFFFFF), Secondary (#CCCCCC)
+───────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
 }
 
-/* Global interactive focus ring specification: 2px #0A0A0A with 2px offset */
+/* Primary text classes */
+.text-mono-primary,
+.text-\[\#000000\],
+.text-\[\#0A0A0A\],
+.text-\[\#171717\],
+.text-\[\#262626\] {
+  color: var(--text);
+}
+
+.dark .text-black {
+  color: #FFFFFF;
+}
+
+/* Secondary text classes */
+.text-mono-secondary,
+.text-mono-muted,
+.text-\[\#444444\],
+.text-\[\#525252\],
+.text-\[\#737373\],
+.text-\[\#8A8A8A\],
+.text-\[\#A3A3A3\],
+.text-gray-400,
+.text-gray-500,
+.text-gray-600,
+.text-gray-700,
+.text-slate-400,
+.text-slate-500,
+.text-slate-600,
+.text-zinc-400,
+.text-zinc-500,
+.text-zinc-600 {
+  color: var(--text-secondary);
+}
+
+/* Sidebar Nav Item Active State */
+.sidebar-nav-item-active {
+  background-color: var(--hover) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+.sidebar-nav-item-active * {
+  color: var(--text) !important;
+}
+
+/* Primary Button Global Inversion */
+.btn-primary,
+.btn-primary * {
+  color: var(--btn-text) !important;
+}
+.btn-primary {
+  background-color: var(--btn-bg) !important;
+  border-color: var(--btn-bg) !important;
+}
+.btn-primary:hover {
+  background-color: var(--btn-hover) !important;
+  border-color: var(--btn-hover) !important;
+}
+
+/* Placeholders & Disabled text (60% opacity) */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.6 !important;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+}
+
+/* Error, success, warning messages in semantic colors */
+.text-red-500, .text-red-600, .text-red-700, .text-red-900 {
+  color: var(--color-error) !important;
+}
+.dark .text-red-500, .dark .text-red-600, .dark .text-red-700, .dark .text-red-900 {
+  color: #EF4444 !important;
+}
+.text-emerald-500, .text-emerald-600, .text-green-600 {
+  color: var(--color-success) !important;
+}
+.dark .text-emerald-500, .dark .text-emerald-600, .dark .text-green-600 {
+  color: #34D399 !important;
+}
+.text-amber-500, .text-amber-600, .text-yellow-600 {
+  color: var(--color-warning) !important;
+}
+.dark .text-amber-500, .dark .text-amber-600, .dark .text-yellow-600 {
+  color: #FBBF24 !important;
+}
+
+/* SVGs and charts use currentColor / tokens */
+svg {
+  color: currentColor;
+}
+.recharts-text,
+.recharts-cartesian-axis-tick-value,
+.recharts-legend-item-text {
+  fill: var(--text) !important;
+  font-family: var(--font-sans) !important;
+}
+.recharts-cartesian-grid line {
+  stroke: var(--border) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SURFACE & BORDER THEME MAPPINGS
+   Dark Mode: Card (#111111), Border (#333333), Input (#0A0A0A)
+   Light Mode: Card (#F5F5F5), Border (#DDDDDD), Input (#FFFFFF)
+───────────────────────────────────────────────────────────── */
+.dark .bg-white {
+  background-color: var(--card) !important;
+}
+.dark .bg-\[\#FAFAFA\],
+.dark .bg-\[\#F5F5F5\],
+.dark .bg-\[\#121212\],
+.dark .bg-\[\#1A1A1A\] {
+  background-color: var(--card) !important;
+}
+.dark .bg-\[\#E5E5E5\] {
+  background-color: var(--hover) !important;
+}
+
+/* Light Mode Card Surfaces */
+:root:not(.dark) .card-surface,
+:root:not(.dark) .rounded-card.bg-white,
+:root:not(.dark) .rounded-card.bg-\[\#FAFAFA\] {
+  background-color: var(--card);
+}
+
+/* Border Colours */
+.border-\[\#E5E5E5\],
+.border-\[\#EBEBEB\],
+.border-\[\#D4D4D4\],
+.border-\[\#F5F5F5\],
+.border-\[\#DDDDDD\] {
+  border-color: var(--border) !important;
+}
+
+.dark .border-\[\#E5E5E5\],
+.dark .border-\[\#EBEBEB\],
+.dark .border-\[\#D4D4D4\],
+.dark .border-\[\#F5F5F5\],
+.dark .border-\[\#262626\],
+.dark .border-\[\#2A2A2A\],
+.dark .border-\[\#3A3A3A\],
+.dark .border-\[\#333333\] {
+  border-color: var(--border) !important;
+}
+.dark .border-\[\#0A0A0A\],
+.dark .border-black {
+  border-color: #FFFFFF !important;
+}
+
+/* Hover surfaces */
+.hover\:bg-\[\#F5F5F5\]:hover,
+.hover\:bg-\[\#F0F0F0\]:hover,
+.hover\:bg-\[\#E5E5E5\]:hover {
+  background-color: var(--hover) !important;
+}
+.dark .hover\:bg-\[\#F5F5F5\]:hover,
+.dark .hover\:bg-\[\#F0F0F0\]:hover,
+.dark .hover\:bg-\[\#E5E5E5\]:hover,
+.dark .hover\:bg-\[\#1A1A1A\]:hover,
+.dark .hover\:bg-\[\#FAFAFA\]:hover,
+.dark .hover\:bg-white:hover {
+  background-color: #1C1C1C !important;
+}
+
+/* Table row dark hover safeguards */
+.dark tbody tr:hover,
+.dark tbody tr:focus-within {
+  background-color: #1C1C1C !important;
+}
+
+/* Force form elements to inherit font-family */
+button,
+input,
+select,
+textarea,
+optgroup {
+  font-family: inherit !important;
+}
+
+/* Monospace restricted strictly to real code elements */
+code,
+kbd,
+pre,
+samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+/* Disable native Edge / IE password reveal and clear icons to avoid double toggle */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+}
+
+/* Global interactive focus ring specification */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #0A0A0A !important;
+  outline: 2px solid var(--color-border-strong) !important;
   outline-offset: 2px !important;
 }
 
-/* Form inputs reset and typography */
-input::placeholder,
-textarea::placeholder {
-  color: var(--color-muted);
+/* Keyframe animations for slow-moving gradient blobs (18-25s loops, 60fps transform & opacity only) */
+@keyframes blob-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.65;
+  }
+  33% {
+    transform: translate(35px, -50px) scale(1.12);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate(-30px, 35px) scale(0.92);
+    opacity: 0.55;
+  }
+}
+
+@keyframes blob-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.55;
+  }
+  33% {
+    transform: translate(-45px, 40px) scale(1.18);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translate(30px, -30px) scale(0.88);
+    opacity: 0.5;
+  }
+}
+
+@keyframes blob-float-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(40px, 40px) scale(1.15);
+    opacity: 0.75;
+  }
+}
+
+@keyframes blob-float-4 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-35px, -35px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes shape-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(20px, -25px) rotate(45deg);
+    opacity: 0.75;
+  }
+}
+
+@keyframes shape-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(-25px, 20px) rotate(-45deg);
+    opacity: 0.7;
+  }
+}
+
+.animate-blob-1 {
+  animation: blob-float-1 20s infinite ease-in-out alternate;
+}
+.animate-blob-2 {
+  animation: blob-float-2 24s infinite ease-in-out alternate;
+}
+.animate-blob-3 {
+  animation: blob-float-3 18s infinite ease-in-out alternate;
+}
+.animate-blob-4 {
+  animation: blob-float-4 22s infinite ease-in-out alternate;
+}
+.animate-shape-1 {
+  animation: shape-float-1 16s infinite ease-in-out alternate;
+}
+.animate-shape-2 {
+  animation: shape-float-2 20s infinite ease-in-out alternate;
+}
+
+/* Shake animation on failed login */
+@keyframes shake-card {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.animate-shake {
+  animation: shake-card 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 /* Respect user's motion preferences */
@@ -105,21 +511,21 @@ textarea::placeholder {
 /* Utility classes adhering strictly to monochrome tokens */
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center font-medium rounded-btn px-4 py-2.5 bg-mono-primary text-white hover:bg-mono-button-hover active:bg-black transition-colors disabled:bg-mono-disabled-bg disabled:text-mono-disabled-text disabled:cursor-not-allowed text-sm;
+    @apply inline-flex items-center justify-center font-medium rounded-btn px-4 py-2.5 transition-colors text-sm;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center font-medium rounded-btn px-4 py-2.5 bg-white text-mono-primary border border-mono-primary hover:bg-mono-subtle active:bg-mono-200 transition-colors disabled:border-mono-border disabled:text-mono-disabled-text disabled:cursor-not-allowed text-sm;
+    @apply inline-flex items-center justify-center font-medium rounded-btn px-4 py-2.5 bg-white dark:bg-[#111111] text-[#000000] dark:text-[#FFFFFF] border border-[#DDDDDD] dark:border-[#333333] hover:bg-[#F5F5F5] dark:hover:bg-[#1A1A1A] transition-colors text-sm;
   }
   .btn-subtle {
-    @apply inline-flex items-center justify-center font-medium rounded-btn px-4 py-2.5 bg-mono-subtle text-mono-primary border border-mono-border hover:bg-mono-200 active:bg-mono-300 transition-colors disabled:bg-mono-disabled-bg disabled:text-mono-disabled-text disabled:cursor-not-allowed text-sm;
+    @apply inline-flex items-center justify-center font-medium rounded-btn px-4 py-2.5 bg-[#F5F5F5] dark:bg-[#111111] text-[#000000] dark:text-[#FFFFFF] border border-[#DDDDDD] dark:border-[#333333] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] transition-colors text-sm;
   }
   .btn-icon {
-    @apply inline-flex items-center justify-center rounded-btn w-10 h-10 min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] border border-mono-border hover:bg-mono-subtle text-mono-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center rounded-btn w-10 h-10 min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] border border-[#DDDDDD] dark:border-[#333333] hover:bg-[#F5F5F5] dark:hover:bg-[#1A1A1A] text-[#000000] dark:text-[#FFFFFF] transition-colors;
   }
   .card-surface {
-    @apply bg-mono-surface border border-mono-border rounded-card shadow-subtle;
+    @apply bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card shadow-subtle;
   }
   .input-field {
-    @apply w-full rounded-input border border-mono-border bg-white px-3.5 py-2.5 text-sm text-mono-primary placeholder:text-mono-muted transition-colors hover:border-mono-400 focus:border-mono-primary disabled:bg-mono-subtle disabled:text-mono-disabled-text;
+    @apply w-full rounded-input border border-[#DDDDDD] dark:border-[#333333] bg-white dark:bg-[#0A0A0A] px-3.5 py-2.5 text-sm text-[#000000] dark:text-[#FFFFFF] placeholder:text-[#444444]/60 dark:placeholder:text-[#CCCCCC]/60 transition-colors hover:border-[#000000] dark:hover:border-[#FFFFFF] focus:border-[#000000] dark:focus:border-[#FFFFFF];
   }
 }

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserPlus, ArrowRight, Info } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { User, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { isValidEmail } from '../../utils/validators';
+import { AuthVisualLayout } from '../../components/store/AuthVisualLayout';
 
 export function RegisterPage() {
   const { register } = useAuth();
@@ -40,61 +42,109 @@ export function RegisterPage() {
       });
       setIsLoading(false);
       navigate('/account');
-    }, 400);
+    }, 450);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
+    }
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-12 sm:py-20 w-full flex-1 flex flex-col justify-center">
-      <div className="bg-white border border-[#E5E5E5] rounded-card p-6 sm:p-8 shadow-subtle space-y-6">
-        <div className="text-center">
-          <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#0A0A0A]">
-            Create Patron Profile
-          </h1>
-          <p className="text-xs text-[#525252] mt-1 font-mono">
-            Register to track orders, curate wishlists, and receive dispatches.
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <AuthVisualLayout
+      title="Create Account"
+      subtitle="Join the MONO™ patronage network to track consignments and curate private wishlists."
+    >
+      <motion.form
+        onSubmit={handleSubmit}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-4"
+      >
+        <motion.div variants={itemVariants}>
           <Input
             label="Full Name"
+            icon={User}
             required
+            autoComplete="name"
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, name: e.target.value });
+              if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+            }}
             error={errors.name}
             placeholder="e.g. Maya Lin"
           />
+        </motion.div>
 
+        <motion.div variants={itemVariants}>
           <Input
             label="Email Address"
             type="email"
+            icon={Mail}
             required
+            autoComplete="email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value });
+              if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
+            }}
             error={errors.email}
             placeholder="patron@domain.com"
           />
+        </motion.div>
 
+        <motion.div variants={itemVariants}>
           <Input
             label="Create Password"
             type="password"
+            icon={Lock}
             required
+            autoComplete="new-password"
             value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+              if (errors.password) setErrors((prev) => ({ ...prev, password: undefined }));
+            }}
             error={errors.password}
             placeholder="••••••••"
           />
+        </motion.div>
 
+        <motion.div variants={itemVariants}>
           <Input
             label="Confirm Password"
             type="password"
+            icon={Lock}
             required
+            autoComplete="new-password"
             value={formData.confirmPassword}
-            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+            onChange={(e) => {
+              setFormData({ ...formData, confirmPassword: e.target.value });
+              if (errors.confirmPassword) setErrors((prev) => ({ ...prev, confirmPassword: undefined }));
+            }}
             error={errors.confirmPassword}
             placeholder="••••••••"
           />
+        </motion.div>
 
+        <motion.div variants={itemVariants}>
           <Button
             type="submit"
             variant="primary"
@@ -102,19 +152,19 @@ export function RegisterPage() {
             fullWidth
             isLoading={isLoading}
             icon={ArrowRight}
-            className="mt-2"
+            className="mt-2 transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0"
           >
             Create Account
           </Button>
-        </form>
+        </motion.div>
 
-        <div className="pt-4 border-t border-[#E5E5E5] text-center text-xs font-mono text-[#525252]">
+        <motion.div variants={itemVariants} className="pt-4 border-t border-[#DDDDDD] dark:border-[#333333] text-center text-xs text-[#000000] dark:text-[#FFFFFF]">
           <span>Already registered? </span>
-          <Link to="/login" className="font-bold text-[#0A0A0A] underline">
+          <Link to="/login" className="font-bold underline hover:opacity-80 transition-opacity">
             Sign In Here
           </Link>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.form>
+    </AuthVisualLayout>
   );
 }

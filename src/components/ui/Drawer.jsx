@@ -75,12 +75,12 @@ export function Drawer({
             exit={variants[position].exit}
             transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
             className={`fixed inset-y-0 ${position === 'right' ? 'right-0' : 'left-0'
-              } w-full ${maxWidth} bg-white border-l border-[#E5E5E5] shadow-drawer flex flex-col z-20 overflow-hidden ${className}`}
+              } w-full ${maxWidth} bg-white dark:bg-[#111111] border-l border-[#DDDDDD] dark:border-[#333333] shadow-drawer flex flex-col z-20 overflow-hidden ${className}`}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E5E5] shrink-0 bg-white">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[#DDDDDD] dark:border-[#333333] shrink-0 bg-[#F5F5F5] dark:bg-[#111111]">
               {title ? (
-                <h3 id="drawer-title" className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A]">
+                <h3 id="drawer-title" className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF]">
                   {title}
                 </h3>
               ) : <div />}
@@ -88,7 +88,7 @@ export function Drawer({
                 type="button"
                 onClick={onClose}
                 aria-label="Close drawer"
-                className="p-2 -mr-2 text-[#525252] hover:text-[#0A0A0A] hover:bg-[#F5F5F5] rounded-btn transition-colors"
+                className="p-2 -mr-2 text-[#000000] dark:text-[#FFFFFF] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] rounded-btn transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -101,7 +101,7 @@ export function Drawer({
 
             {/* Footer */}
             {footer && (
-              <div className="p-4 sm:p-6 border-t border-[#E5E5E5] bg-[#FAFAFA] shrink-0">
+              <div className="p-4 sm:p-6 border-t border-[#DDDDDD] dark:border-[#333333] bg-[#F5F5F5] dark:bg-[#0A0A0A] shrink-0">
                 {footer}
               </div>
             )}

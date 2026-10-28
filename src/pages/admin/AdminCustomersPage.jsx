@@ -127,12 +127,12 @@ export function AdminCustomersPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Client Registry
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Registered Patrons ({customers.length})
           </h1>
         </div>
@@ -143,9 +143,8 @@ export function AdminCustomersPage() {
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card p-4 shadow-subtle flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-4 shadow-subtle flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#737373] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
@@ -153,9 +152,12 @@ export function AdminCustomersPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
-            placeholder="Search patron by name, email, city..."
-            className="w-full min-h-[44px] pl-10 pr-4 py-2 text-xs border border-[#E5E5E5] rounded-input bg-white focus:border-[#0A0A0A]"
+            placeholder="Search...."
+            className="w-full min-h-[44px] pl-4 pr-12 py-2 text-xs border border-[#DDDDDD] dark:border-[#333333] rounded-xl bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] placeholder-[#737373] dark:placeholder-[#666666] focus:border-[#000000] dark:focus:border-[#FFFFFF]"
           />
+          <div className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-[#F5F5F5] dark:bg-[#161616] border border-[#DDDDDD] dark:border-[#333333] flex items-center justify-center text-[#000000] dark:text-[#FFFFFF] pointer-events-none shadow-subtle">
+            <Search className="w-4 h-4" />
+          </div>
         </div>
 
         <select
@@ -164,7 +166,7 @@ export function AdminCustomersPage() {
             setStatusFilter(e.target.value);
             setCurrentPage(1);
           }}
-          className="min-h-[44px] px-3 text-xs font-mono border border-[#E5E5E5] rounded-btn bg-white focus:border-[#0A0A0A]"
+          className="min-h-[44px] px-3 text-xs font-mono border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-[#000000] dark:focus:border-[#FFFFFF]"
         >
           <option value="all">All Patron Statuses</option>
           <option value="active">Active Only</option>
@@ -173,10 +175,10 @@ export function AdminCustomersPage() {
       </div>
 
       {/* Customers Table */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card shadow-subtle overflow-hidden">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card shadow-subtle overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#F5F5F5] border-b border-[#E5E5E5] text-[#737373] uppercase text-[10px]">
+            <thead className="bg-[#EBEBEB] dark:bg-[#0A0A0A] border-b border-[#DDDDDD] dark:border-[#333333] text-[#444444] dark:text-[#CCCCCC] uppercase text-[10px]">
               <tr>
                 <th className="py-3 px-4">Patron Name</th>
                 <th className="py-3 px-4">Contact Coordinates</th>
@@ -187,29 +189,30 @@ export function AdminCustomersPage() {
                 <th className="py-3 px-4 text-right">Inspect</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E5E5E5]">
+            <tbody className="divide-y divide-[#DDDDDD] dark:divide-[#333333]">
               {paginatedCustomers.map((cust) => (
-                <tr key={cust.id} className="hover:bg-[#FAFAFA] transition-colors">
-                  <td className="py-3 px-4 font-bold text-[#0A0A0A]">{cust.name}</td>
+                <tr key={cust.id} className="hover:bg-[#EBEBEB] dark:hover:bg-[#1C1C1C] focus-within:bg-[#EBEBEB] dark:focus-within:bg-[#1C1C1C] transition-colors">
+                  <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">{cust.name}</td>
                   <td className="py-3 px-4">
-                    <span className="text-[#0A0A0A] block">{cust.email}</span>
-                    <span className="text-[10px] text-[#737373]">{cust.phone || '—'}</span>
+                    <span className="text-[#000000] dark:text-[#FFFFFF] block">{cust.email}</span>
+                    <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC]">{cust.phone || '—'}</span>
                   </td>
-                  <td className="py-3 px-4 text-[#525252]">
+                  <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">
                     {cust.address?.city}, {cust.address?.country}
                   </td>
-                  <td className="py-3 px-4 font-bold text-[#0A0A0A]">{cust.totalOrders}</td>
-                  <td className="py-3 px-4 font-bold text-[#0A0A0A]">
+                  <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">{cust.totalOrders}</td>
+                  <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">
                     {formatCurrency(cust.totalSpent)}
                   </td>
                   <td className="py-3 px-4">
                     <button
                       type="button"
                       onClick={() => handleToggle(cust.id, cust.name, cust.status)}
-                      className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border transition-colors ${cust.status === 'active'
-                          ? 'bg-[#0A0A0A] text-white border-[#0A0A0A]'
-                          : 'bg-[#E5E5E5] text-[#525252] border-[#A3A3A3] line-through'
-                        }`}
+                      className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold border transition-colors ${
+                        cust.status === 'active'
+                          ? 'bg-black text-white border-black dark:bg-white dark:text-black dark:border-white'
+                          : 'bg-[#DDDDDD] text-[#444444] border-[#DDDDDD] dark:bg-[#222222] dark:text-[#888888] dark:border-[#333333] line-through'
+                      }`}
                     >
                       {cust.status}
                     </button>
@@ -218,7 +221,7 @@ export function AdminCustomersPage() {
                     <button
                       type="button"
                       onClick={() => setSelectedCustomer(cust)}
-                      className="p-1.5 text-[#525252] hover:text-[#0A0A0A] hover:bg-[#F5F5F5] rounded transition-colors inline-flex items-center gap-1"
+                      className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#DDDDDD] dark:hover:bg-[#222222] rounded transition-colors inline-flex items-center gap-1"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -229,7 +232,7 @@ export function AdminCustomersPage() {
           </table>
         </div>
 
-        <div className="p-4 border-t border-[#E5E5E5]">
+        <div className="p-4 border-t border-[#DDDDDD] dark:border-[#333333]">
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -250,26 +253,26 @@ export function AdminCustomersPage() {
         >
           <div className="space-y-6 text-xs font-mono">
             {/* Header profile meta */}
-            <div className="p-4 bg-[#F5F5F5] rounded-card border border-[#E5E5E5] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="p-4 bg-white dark:bg-[#0A0A0A] rounded-card border border-[#DDDDDD] dark:border-[#333333] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-base font-bold text-[#0A0A0A]">{selectedCustomer.name}</h3>
-                <p className="text-[#525252]">{selectedCustomer.email} · {selectedCustomer.phone}</p>
-                <p className="text-[11px] text-[#737373] mt-1">Patron since {selectedCustomer.joinedDate}</p>
+                <h3 className="text-base font-bold text-[#000000] dark:text-[#FFFFFF]">{selectedCustomer.name}</h3>
+                <p className="text-[#444444] dark:text-[#CCCCCC]">{selectedCustomer.email} · {selectedCustomer.phone}</p>
+                <p className="text-[11px] text-[#444444] dark:text-[#CCCCCC] mt-1">Patron since {selectedCustomer.joinedDate}</p>
               </div>
               <div className="text-left sm:text-right">
-                <span className="text-[10px] text-[#737373] uppercase block">Lifetime Value</span>
-                <span className="text-lg font-black text-[#0A0A0A]">
+                <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC] uppercase block">Lifetime Value</span>
+                <span className="text-lg font-black text-[#000000] dark:text-[#FFFFFF]">
                   {formatCurrency(selectedCustomer.totalSpent)}
                 </span>
               </div>
             </div>
 
             {/* Address */}
-            <div className="p-4 border border-[#E5E5E5] rounded-btn">
-              <h4 className="font-bold uppercase text-[#0A0A0A] mb-2 flex items-center gap-1.5">
+            <div className="p-4 border border-[#DDDDDD] dark:border-[#333333] rounded-btn">
+              <h4 className="font-bold uppercase text-[#000000] dark:text-[#FFFFFF] mb-2 flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5" /> Primary Delivery Location
               </h4>
-              <p className="text-[#525252] leading-relaxed">
+              <p className="text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
                 {selectedCustomer.address?.street}<br />
                 {selectedCustomer.address?.city}, {selectedCustomer.address?.state} {selectedCustomer.address?.postalCode}<br />
                 {selectedCustomer.address?.country}
@@ -278,28 +281,28 @@ export function AdminCustomersPage() {
 
             {/* Associated Consignments */}
             <div>
-              <h4 className="font-bold uppercase text-[#0A0A0A] mb-3 border-b border-[#E5E5E5] pb-2">
+              <h4 className="font-bold uppercase text-[#000000] dark:text-[#FFFFFF] mb-3 border-b border-[#DDDDDD] dark:border-[#333333] pb-2">
                 Order History ({customerOrders.length})
               </h4>
               <div className="space-y-2">
                 {customerOrders.map((ord) => (
                   <div
                     key={ord.id}
-                    className="p-3 bg-[#FAFAFA] border border-[#E5E5E5] rounded-btn flex items-center justify-between"
+                    className="p-3 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] rounded-btn flex items-center justify-between"
                   >
                     <div>
-                      <span className="font-bold text-[#0A0A0A] block">{ord.id}</span>
-                      <span className="text-[10px] text-[#737373]">{formatDate(ord.createdAt)}</span>
+                      <span className="font-bold text-[#000000] dark:text-[#FFFFFF] block">{ord.id}</span>
+                      <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC]">{formatDate(ord.createdAt)}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Badge status={ord.status} size="sm" />
-                      <span className="font-bold text-[#0A0A0A]">{formatCurrency(ord.total)}</span>
+                      <span className="font-bold text-[#000000] dark:text-[#FFFFFF]">{formatCurrency(ord.total)}</span>
                     </div>
                   </div>
                 ))}
 
                 {customerOrders.length === 0 && (
-                  <p className="text-[#737373] py-4 text-center">No active consignments logged.</p>
+                  <p className="text-[#444444] dark:text-[#CCCCCC] py-4 text-center">No active consignments logged.</p>
                 )}
               </div>
             </div>
@@ -364,7 +367,7 @@ export function AdminCustomersPage() {
             />
           </div>
 
-          <div className="pt-4 border-t border-[#E5E5E5] flex justify-end gap-3">
+          <div className="pt-4 border-t border-[#DDDDDD] dark:border-[#333333] flex justify-end gap-3">
             <Button variant="outline" size="md" onClick={() => setIsAddModalOpen(false)}>
               Cancel
             </Button>

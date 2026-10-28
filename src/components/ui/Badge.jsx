@@ -33,63 +33,63 @@ export function Badge({
   switch (status) {
     case 'pending':
       computedIcon = Clock;
-      computedStyle = 'bg-[#F5F5F5] text-[#0A0A0A] border border-[#A3A3A3]';
+      computedStyle = 'bg-[#F5F5F5] dark:bg-[#111111] text-[#000000] dark:text-[#FFFFFF] border border-[#DDDDDD] dark:border-[#333333]';
       computedLabel = children || 'Pending';
       break;
 
     case 'processing':
       computedIcon = RotateCcw;
-      computedStyle = 'bg-white text-[#0A0A0A] border-2 border-dashed border-[#0A0A0A] font-semibold';
+      computedStyle = 'bg-white dark:bg-[#000000] text-[#000000] dark:text-[#FFFFFF] border-2 border-dashed border-black dark:border-white font-semibold';
       computedLabel = children || 'Processing';
       break;
 
     case 'shipped':
       computedIcon = Truck;
-      computedStyle = 'bg-white text-[#0A0A0A] border-2 border-[#0A0A0A] font-bold';
+      computedStyle = 'bg-white dark:bg-[#000000] text-[#000000] dark:text-[#FFFFFF] border-2 border-black dark:border-white font-bold';
       computedLabel = children || 'Shipped';
       break;
 
     case 'delivered':
       computedIcon = CheckCircle2;
-      computedStyle = 'bg-[#0A0A0A] text-white border border-[#0A0A0A] font-semibold';
+      computedStyle = 'bg-black text-white dark:bg-white dark:text-black border border-black dark:border-white font-semibold';
       computedLabel = children || 'Delivered';
       break;
 
     case 'cancelled':
       computedIcon = XCircle;
-      computedStyle = 'bg-[#E5E5E5] text-[#525252] border border-[#A3A3A3] line-through font-medium';
+      computedStyle = 'bg-[#EEEEEE] dark:bg-[#1A1A1A] text-[#444444] dark:text-[#CCCCCC] border border-[#DDDDDD] dark:border-[#333333] line-through font-medium';
       computedLabel = children || 'Cancelled';
       break;
 
     case 'in_stock':
       computedIcon = Check;
-      computedStyle = 'bg-white text-[#0A0A0A] border border-[#0A0A0A] font-medium';
+      computedStyle = 'bg-white dark:bg-[#000000] text-[#000000] dark:text-[#FFFFFF] border border-black dark:border-white font-medium';
       computedLabel = children || 'In Stock';
       break;
 
     case 'low_stock':
       computedIcon = AlertTriangle;
-      computedStyle = 'bg-[#F5F5F5] text-[#0A0A0A] border border-dashed border-[#0A0A0A] font-medium';
+      computedStyle = 'bg-[#F5F5F5] dark:bg-[#111111] text-[#000000] dark:text-[#FFFFFF] border border-dashed border-black dark:border-white font-medium';
       computedLabel = children || 'Low Stock';
       break;
 
     case 'out_of_stock':
       computedIcon = Slash;
-      computedStyle = 'bg-[#0A0A0A] text-white font-medium';
+      computedStyle = 'bg-black text-white dark:bg-white dark:text-black font-medium';
       computedLabel = children || 'Sold Out';
       break;
 
     default:
       // Generic variant styling
       if (variant === 'solid') {
-        computedStyle = 'bg-[#0A0A0A] text-white border border-[#0A0A0A]';
+        computedStyle = 'bg-black text-white border border-black dark:bg-white dark:text-black dark:border-white';
       } else if (variant === 'outline') {
-        computedStyle = 'bg-white text-[#0A0A0A] border border-[#0A0A0A]';
+        computedStyle = 'bg-transparent text-[#000000] dark:text-[#FFFFFF] border border-black dark:border-white';
       } else if (variant === 'dashed') {
-        computedStyle = 'bg-white text-[#0A0A0A] border border-dashed border-[#0A0A0A]';
+        computedStyle = 'bg-transparent text-[#000000] dark:text-[#FFFFFF] border border-dashed border-black dark:border-white';
       } else {
         // subtle
-        computedStyle = 'bg-[#F5F5F5] text-[#0A0A0A] border border-[#E5E5E5]';
+        computedStyle = 'bg-[#F5F5F5] dark:bg-[#111111] text-[#000000] dark:text-[#FFFFFF] border border-[#DDDDDD] dark:border-[#333333]';
       }
       break;
   }

@@ -34,27 +34,27 @@ export function ContactPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1 text-[#000000] dark:text-[#FFFFFF]">
       <div className="mb-10 sm:mb-12">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-2">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-2">
           Concierge Inquiries
         </span>
-        <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#0A0A0A]">
+        <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
           Direct Communication
         </h1>
-        <p className="text-xs sm:text-sm text-[#525252] mt-2 max-w-xl">
+        <p className="text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] mt-2 max-w-xl">
           Connect with our design curators regarding bespoke sizing, private allocations, or consignment dispatch status.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         {/* Contact Information (5 cols) */}
-        <div className="md:col-span-5 space-y-6 bg-[#FAFAFA] border border-[#E5E5E5] rounded-card p-6 text-xs font-mono">
+        <div className="md:col-span-5 space-y-6 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 text-xs font-mono">
           <div>
-            <h3 className="font-bold uppercase tracking-wider text-[#0A0A0A] mb-2 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#0A0A0A]" /> Physical Atelier
+            <h3 className="font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-2 flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF]" /> Physical Atelier
             </h3>
-            <p className="text-[#525252] leading-relaxed">
+            <p className="text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
               MONO™ Design Architecture<br />
               420 West Broadway, Loft 4B<br />
               SoHo, New York, NY 10012
@@ -62,20 +62,20 @@ export function ContactPage() {
           </div>
 
           <div>
-            <h3 className="font-bold uppercase tracking-wider text-[#0A0A0A] mb-2 flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[#0A0A0A]" /> Electronic Mail
+            <h3 className="font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-2 flex items-center gap-2">
+              <Mail className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF]" /> Electronic Mail
             </h3>
-            <p className="text-[#525252] leading-relaxed">
+            <p className="text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
               concierge@mono-atelier.com<br />
               curations@mono-atelier.com
             </p>
           </div>
 
           <div>
-            <h3 className="font-bold uppercase tracking-wider text-[#0A0A0A] mb-2 flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[#0A0A0A]" /> Concierge Direct
+            <h3 className="font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-2 flex items-center gap-2">
+              <Phone className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF]" /> Concierge Direct
             </h3>
-            <p className="text-[#525252] leading-relaxed">
+            <p className="text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
               +1 (800) 555-0199<br />
               Monday - Friday, 09:00 - 18:00 EST
             </p>
@@ -83,14 +83,14 @@ export function ContactPage() {
         </div>
 
         {/* Contact Form (7 cols) */}
-        <div className="md:col-span-7 bg-white border border-[#E5E5E5] rounded-card p-6 sm:p-8 shadow-subtle">
+        <div className="md:col-span-7 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-6 sm:p-8 shadow-subtle">
           {isSent ? (
             <div className="py-12 text-center space-y-3">
-              <CheckCircle2 className="w-12 h-12 text-[#0A0A0A] mx-auto" />
-              <h3 className="text-base font-bold uppercase tracking-wider text-[#0A0A0A]">
+              <CheckCircle2 className="w-12 h-12 text-[#000000] dark:text-[#FFFFFF] mx-auto" />
+              <h3 className="text-base font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF]">
                 Transmission Logged
               </h3>
-              <p className="text-xs text-[#525252] max-w-sm mx-auto">
+              <p className="text-xs text-[#444444] dark:text-[#CCCCCC] max-w-sm mx-auto">
                 Thank you for your message. A curator has received your inquiry and will respond to {formData.email}.
               </p>
               <Button variant="outline" size="sm" onClick={() => setIsSent(false)}>

@@ -149,22 +149,21 @@ export function ProductsPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full flex-1 flex flex-col">
       {/* Header & Title */}
       <div className="mb-6 sm:mb-8">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
           Catalog Architecture
         </span>
-        <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A]">
+        <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
           {selectedCategory || 'Entire Collection'}
         </h1>
-        <p className="text-xs sm:text-sm text-[#525252] mt-1 font-mono">
+        <p className="text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] mt-1 font-mono">
           {totalItems} items matching active parameters
         </p>
       </div>
 
       {/* Control Bar: Search input, filter drawer trigger, quick pill categories */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pb-6 border-b border-[#E5E5E5] mb-6">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pb-6 border-b border-[#DDDDDD] dark:border-[#333333] mb-6">
         {/* Search Field */}
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#737373] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
@@ -172,18 +171,23 @@ export function ProductsPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
-            placeholder="Search items by title, style, or SKU..."
-            className="w-full min-h-[44px] pl-10 pr-9 py-2 text-xs border border-[#E5E5E5] rounded-input bg-white focus:border-[#0A0A0A] placeholder:text-[#A3A3A3]"
+            placeholder="Search...."
+            className="w-full min-h-[44px] pl-4 pr-12 py-2 text-xs border border-[#DDDDDD] dark:border-[#333333] rounded-xl bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-[#000000] dark:focus:border-[#FFFFFF] placeholder:text-[#444444]/60 dark:placeholder:text-[#CCCCCC]/60"
           />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#737373] hover:text-[#0A0A0A]"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          )}
+          <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="p-1 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF]"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+            <div className="w-8 h-8 rounded-lg bg-[#F5F5F5] dark:bg-[#161616] border border-[#DDDDDD] dark:border-[#333333] flex items-center justify-center text-[#000000] dark:text-[#FFFFFF] pointer-events-none shadow-subtle">
+              <Search className="w-4 h-4" />
+            </div>
+          </div>
         </div>
 
         {/* Action Controls */}
@@ -202,7 +206,7 @@ export function ProductsPage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="min-h-[44px] px-3 text-xs font-mono border border-[#E5E5E5] rounded-btn bg-white text-[#0A0A0A] focus:border-[#0A0A0A]"
+            className="min-h-[44px] px-3 text-xs font-mono border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-[#000000] dark:focus:border-[#FFFFFF]"
           >
             <option value="featured">Sort: Featured</option>
             <option value="newest">Sort: Newest</option>
@@ -224,8 +228,8 @@ export function ProductsPage() {
             setCurrentPage(1);
           }}
           className={`px-3 py-1.5 rounded-full text-xs font-mono uppercase whitespace-nowrap transition-colors border ${!selectedCategory
-              ? 'bg-[#0A0A0A] text-white border-[#0A0A0A] font-bold'
-              : 'bg-white text-[#525252] border-[#E5E5E5] hover:border-[#0A0A0A]'
+              ? 'bg-black text-white border-black dark:bg-white dark:text-black dark:border-white font-bold'
+              : 'bg-[#F5F5F5] dark:bg-[#111111] text-[#444444] dark:text-[#CCCCCC] border-[#DDDDDD] dark:border-[#333333] hover:border-[#000000] dark:hover:border-[#FFFFFF]'
             }`}
         >
           All ({products.length})
@@ -245,8 +249,8 @@ export function ProductsPage() {
                 setCurrentPage(1);
               }}
               className={`px-3 py-1.5 rounded-full text-xs font-mono uppercase whitespace-nowrap transition-colors border ${isSelected
-                  ? 'bg-[#0A0A0A] text-white border-[#0A0A0A] font-bold'
-                  : 'bg-white text-[#525252] border-[#E5E5E5] hover:border-[#0A0A0A]'
+                  ? 'bg-black text-white border-black dark:bg-white dark:text-black dark:border-white font-bold'
+                  : 'bg-[#F5F5F5] dark:bg-[#111111] text-[#444444] dark:text-[#CCCCCC] border-[#DDDDDD] dark:border-[#333333] hover:border-[#000000] dark:hover:border-[#FFFFFF]'
                 }`}
             >
               {cat.name} ({count})
@@ -257,40 +261,40 @@ export function ProductsPage() {
 
       {/* Active Filter Tags */}
       {hasActiveFilters && (
-        <div className="flex flex-wrap items-center gap-2 mb-6 p-3 bg-[#F5F5F5] border border-[#E5E5E5] rounded-btn text-xs font-mono">
-          <span className="text-[#737373] text-[10px] uppercase font-bold">Filters:</span>
+        <div className="flex flex-wrap items-center gap-2 mb-6 p-3 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-btn text-xs font-mono">
+          <span className="text-[#444444] dark:text-[#CCCCCC] text-[10px] uppercase font-bold">Filters:</span>
           {selectedCategory && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-[#E5E5E5] rounded">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF] rounded">
               Cat: {selectedCategory}
               <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedCategory('')} />
             </span>
           )}
           {selectedSubcategory && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-[#E5E5E5] rounded">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF] rounded">
               Sub: {selectedSubcategory}
               <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedSubcategory('')} />
             </span>
           )}
           {priceRange < 600 && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-[#E5E5E5] rounded">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF] rounded">
               Max: ${priceRange}
               <X className="w-3 h-3 cursor-pointer" onClick={() => setPriceRange(600)} />
             </span>
           )}
           {minRating > 0 && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-[#E5E5E5] rounded">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF] rounded">
               Rating: {minRating}+
               <X className="w-3 h-3 cursor-pointer" onClick={() => setMinRating(0)} />
             </span>
           )}
           {inStockOnly && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-[#E5E5E5] rounded">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF] rounded">
               In Stock
               <X className="w-3 h-3 cursor-pointer" onClick={() => setInStockOnly(false)} />
             </span>
           )}
           {onSaleOnly && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white border border-[#E5E5E5] rounded">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-[#0A0A0A] border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF] rounded">
               Sale Items
               <X className="w-3 h-3 cursor-pointer" onClick={() => setOnSaleOnly(false)} />
             </span>
@@ -298,7 +302,7 @@ export function ProductsPage() {
           <button
             type="button"
             onClick={handleClearFilters}
-            className="ml-auto underline text-[#0A0A0A] hover:text-[#525252] text-[11px]"
+            className="ml-auto underline text-[#000000] dark:text-[#FFFFFF] hover:text-[#444444] dark:hover:text-[#CCCCCC] text-[11px]"
           >
             Clear All
           </button>
@@ -324,7 +328,7 @@ export function ProductsPage() {
           </div>
 
           {/* Pagination Controls */}
-          <div className="mt-8 pt-6 border-t border-[#E5E5E5]">
+          <div className="mt-8 pt-6 border-t border-[#DDDDDD] dark:border-[#333333]">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

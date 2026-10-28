@@ -13,7 +13,7 @@ export function Button({
   icon: Icon,
   ...props
 }) {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 select-none relative focus-visible:outline-2 focus-visible:outline-[#0A0A0A] focus-visible:outline-offset-2';
+  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 select-none relative focus-visible:outline-2 focus-visible:outline-black dark:focus-visible:outline-white focus-visible:outline-offset-2';
 
   const sizeStyles = {
     sm: 'text-xs px-3 py-2 min-h-[36px] rounded-btn gap-1.5',
@@ -23,15 +23,15 @@ export function Button({
   };
 
   const variantStyles = {
-    primary: 'bg-[#0A0A0A] text-white hover:bg-[#262626] active:bg-black border border-[#0A0A0A] disabled:bg-[#E5E5E5] disabled:text-[#A3A3A3] disabled:border-[#E5E5E5]',
-    secondary: 'bg-white text-[#0A0A0A] border border-[#0A0A0A] hover:bg-[#F5F5F5] active:bg-[#E5E5E5] disabled:border-[#E5E5E5] disabled:text-[#A3A3A3]',
-    subtle: 'bg-[#F5F5F5] text-[#0A0A0A] border border-[#E5E5E5] hover:bg-[#E5E5E5] active:bg-[#D4D4D4] disabled:bg-[#F5F5F5] disabled:text-[#A3A3A3]',
-    outline: 'bg-transparent text-[#0A0A0A] border border-[#E5E5E5] hover:border-[#0A0A0A] hover:bg-[#F5F5F5] active:bg-[#E5E5E5] disabled:border-[#E5E5E5] disabled:text-[#A3A3A3]',
-    ghost: 'bg-transparent text-[#0A0A0A] hover:bg-[#F5F5F5] active:bg-[#E5E5E5] disabled:text-[#A3A3A3]'
+    primary: 'bg-black text-white hover:bg-[#333333] active:bg-black border border-black dark:bg-white dark:text-black dark:hover:bg-[#E5E5E5] dark:active:bg-white dark:border-white disabled:opacity-50 disabled:cursor-not-allowed',
+    secondary: 'bg-white text-black border border-[#DDDDDD] hover:bg-[#F5F5F5] active:bg-[#EEEEEE] dark:bg-[#111111] dark:text-white dark:border-[#333333] dark:hover:bg-[#1A1A1A] disabled:opacity-50 disabled:cursor-not-allowed',
+    subtle: 'bg-[#F5F5F5] text-black border border-[#DDDDDD] hover:bg-[#EEEEEE] active:bg-[#DDDDDD] dark:bg-[#111111] dark:text-white dark:border-[#333333] dark:hover:bg-[#1A1A1A] disabled:opacity-50 disabled:cursor-not-allowed',
+    outline: 'bg-transparent text-black border border-[#DDDDDD] hover:border-black hover:bg-[#F5F5F5] dark:bg-transparent dark:text-white dark:border-[#333333] dark:hover:border-white dark:hover:bg-[#111111] disabled:opacity-50 disabled:cursor-not-allowed',
+    ghost: 'bg-transparent text-black hover:bg-[#F5F5F5] dark:text-white dark:hover:bg-[#111111] disabled:opacity-50 disabled:cursor-not-allowed'
   };
 
   const widthStyle = fullWidth ? 'w-full' : '';
-  const stateStyle = (disabled || isLoading) ? 'cursor-not-allowed opacity-80' : 'cursor-pointer';
+  const stateStyle = (disabled || isLoading) ? 'cursor-not-allowed opacity-60' : 'cursor-pointer';
 
   return (
     <button
@@ -44,7 +44,7 @@ export function Button({
         <Loader2 className="w-4 h-4 animate-spin text-current" />
       ) : (
         <>
-          {Icon && <Icon className="w-4 h-4 shrink-0" />}
+          {Icon && <Icon className="w-4 h-4 shrink-0 text-current" />}
           {children}
         </>
       )}

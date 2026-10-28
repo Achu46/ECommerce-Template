@@ -11,14 +11,14 @@ export function Skeleton({ className = '', variant = 'rect' }) {
   return (
     <div
       aria-hidden="true"
-      className={`animate-pulse bg-[#E5E5E5] ${variantStyles[variant]} ${className}`}
+      className={`animate-pulse bg-[#E5E5E5] dark:bg-[#222222] ${variantStyles[variant]} ${className}`}
     />
   );
 }
 
 export function ProductCardSkeleton() {
   return (
-    <div className="flex flex-col gap-3 p-3 bg-white border border-[#E5E5E5] rounded-card">
+    <div className="flex flex-col gap-3 p-3 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card">
       <Skeleton className="w-full aspect-[4/5] rounded-lg" />
       <Skeleton className="w-1/3 h-3 text" />
       <Skeleton className="w-4/5 h-4 text" />
@@ -32,7 +32,7 @@ export function ProductCardSkeleton() {
 
 export function TableRowSkeleton({ cols = 5 }) {
   return (
-    <tr className="border-b border-[#E5E5E5] animate-pulse">
+    <tr className="border-b border-[#DDDDDD] dark:border-[#333333] animate-pulse">
       {Array.from({ length: cols }).map((_, i) => (
         <td key={i} className="py-4 px-4">
           <Skeleton className="h-4 w-3/4 text" />

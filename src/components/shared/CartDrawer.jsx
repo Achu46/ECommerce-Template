@@ -57,17 +57,17 @@ export function CartDrawer() {
           <div className="flex flex-col gap-3">
             {/* Coupon Code Input */}
             {appliedCoupon ? (
-              <div className="flex items-center justify-between p-2.5 bg-white border border-[#0A0A0A] rounded-btn">
+              <div className="flex items-center justify-between p-2.5 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-btn text-[#000000] dark:text-[#FFFFFF]">
                 <div className="flex items-center gap-2">
-                  <Tag className="w-3.5 h-3.5 text-[#0A0A0A]" />
+                  <Tag className="w-3.5 h-3.5 text-[#000000] dark:text-[#FFFFFF]" />
                   <span className="text-xs font-mono font-bold uppercase">{appliedCoupon.code}</span>
-                  <span className="text-[11px] text-[#525252]">(-{formatCurrency(discountAmount)})</span>
+                  <span className="text-[11px] text-[#444444] dark:text-[#CCCCCC]">(-{formatCurrency(discountAmount)})</span>
                 </div>
                 <button
                   type="button"
                   onClick={removeCoupon}
                   aria-label="Remove coupon"
-                  className="p-1 text-[#525252] hover:text-[#0A0A0A]"
+                  className="p-1 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF]"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -79,7 +79,7 @@ export function CartDrawer() {
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                   placeholder="Promo code (e.g. MONO10)"
-                  className="flex-1 min-h-[40px] px-3 py-1.5 text-xs font-mono border border-[#E5E5E5] rounded-btn bg-white uppercase placeholder:normal-case placeholder:font-sans focus:border-[#0A0A0A]"
+                  className="flex-1 min-h-[40px] px-3 py-1.5 text-xs font-mono border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] uppercase placeholder:normal-case placeholder:font-sans focus:border-[#000000] dark:focus:border-[#FFFFFF]"
                 />
                 <Button type="submit" variant="secondary" size="sm">
                   Apply
@@ -88,24 +88,24 @@ export function CartDrawer() {
             )}
 
             {/* Calculations Breakdown */}
-            <div className="space-y-1.5 pt-2 text-xs border-t border-[#E5E5E5]">
-              <div className="flex justify-between text-[#525252]">
+            <div className="space-y-1.5 pt-2 text-xs border-t border-[#DDDDDD] dark:border-[#333333]">
+              <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
                 <span>Subtotal</span>
-                <span className="font-mono text-[#0A0A0A]">{formatCurrency(subtotal)}</span>
+                <span className="font-mono text-[#000000] dark:text-[#FFFFFF]">{formatCurrency(subtotal)}</span>
               </div>
               {discountAmount > 0 && (
-                <div className="flex justify-between text-[#0A0A0A] font-medium">
+                <div className="flex justify-between text-[#000000] dark:text-[#FFFFFF] font-medium">
                   <span>Discount</span>
                   <span className="font-mono">-{formatCurrency(discountAmount)}</span>
                 </div>
               )}
-              <div className="flex justify-between text-[#525252]">
+              <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
                 <span>Estimated Shipping</span>
-                <span className="font-mono text-[#0A0A0A]">
+                <span className="font-mono text-[#000000] dark:text-[#FFFFFF]">
                   {shippingFee === 0 ? 'FREE' : formatCurrency(shippingFee)}
                 </span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-[#0A0A0A] pt-2 border-t border-[#E5E5E5]">
+              <div className="flex justify-between text-sm font-bold text-[#000000] dark:text-[#FFFFFF] pt-2 border-t border-[#DDDDDD] dark:border-[#333333]">
                 <span>Total</span>
                 <span className="font-mono">{formatCurrency(total)}</span>
               </div>
@@ -126,18 +126,18 @@ export function CartDrawer() {
       }
     >
       {/* Free Shipping Meter */}
-      <div className="mb-4 pb-4 border-b border-[#E5E5E5]">
+      <div className="mb-4 pb-4 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div className="flex items-center justify-between text-xs mb-1.5 font-mono">
-          <span className="text-[#525252]">
+          <span className="text-[#444444] dark:text-[#CCCCCC]">
             {amountToFreeShipping === 0
               ? 'QUALIFIED FOR COMPLIMENTARY SHIPPING'
               : `ADD ${formatCurrency(amountToFreeShipping)} MORE FOR FREE SHIPPING`}
           </span>
-          <span className="font-bold">{freeShippingProgress}%</span>
+          <span className="font-bold text-[#000000] dark:text-[#FFFFFF]">{freeShippingProgress}%</span>
         </div>
-        <div className="w-full h-1.5 bg-[#E5E5E5] rounded-full overflow-hidden">
+        <div className="w-full h-1.5 bg-[#E5E5E5] dark:bg-[#222222] rounded-full overflow-hidden">
           <div
-            className="h-full bg-[#0A0A0A] transition-all duration-300"
+            className="h-full bg-black dark:bg-white transition-all duration-300"
             style={{ width: `${freeShippingProgress}%` }}
           />
         </div>
@@ -146,13 +146,13 @@ export function CartDrawer() {
       {/* Cart Items List */}
       {cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="w-16 h-16 rounded-full border border-[#0A0A0A] bg-[#F5F5F5] flex items-center justify-center mb-4">
-            <ShoppingBag className="w-8 h-8 text-[#0A0A0A]" />
+          <div className="w-16 h-16 rounded-full border border-[#DDDDDD] dark:border-[#333333] bg-[#F5F5F5] dark:bg-[#111111] flex items-center justify-center mb-4">
+            <ShoppingBag className="w-8 h-8 text-[#000000] dark:text-[#FFFFFF]" />
           </div>
-          <h4 className="text-sm font-bold uppercase tracking-wider text-[#0A0A0A] mb-1">
+          <h4 className="text-sm font-bold uppercase tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-1">
             Your Cart is Empty
           </h4>
-          <p className="text-xs text-[#525252] max-w-xs mb-6">
+          <p className="text-xs text-[#444444] dark:text-[#CCCCCC] max-w-xs mb-6">
             Explore our curated catalog to begin building your monochrome collection.
           </p>
           <Button
@@ -167,40 +167,40 @@ export function CartDrawer() {
           </Button>
         </div>
       ) : (
-        <div className="space-y-4 divide-y divide-[#E5E5E5]">
+        <div className="space-y-4 divide-y divide-[#DDDDDD] dark:divide-[#333333]">
           {cart.map((item) => (
             <div key={item.productId} className="pt-4 first:pt-0 flex gap-3.5">
-              <div className="w-20 h-20 shrink-0 border border-[#E5E5E5] rounded-btn overflow-hidden">
+              <div className="w-20 h-20 shrink-0 border border-[#DDDDDD] dark:border-[#333333] rounded-btn overflow-hidden">
                 <ProductImage src={item.image} alt={item.name} aspectRatio="aspect-square" />
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-start justify-between gap-2">
-                    <h5 className="text-xs font-semibold text-[#0A0A0A] line-clamp-2">
+                    <h5 className="text-xs font-semibold text-[#000000] dark:text-[#FFFFFF] line-clamp-2">
                       {item.name}
                     </h5>
                     <button
                       type="button"
                       onClick={() => removeFromCart(item.productId)}
                       aria-label={`Remove ${item.name}`}
-                      className="p-1 text-[#A3A3A3] hover:text-[#0A0A0A] transition-colors"
+                      className="p-1 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] transition-colors"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                  <span className="font-mono text-xs text-[#525252] mt-0.5 block">
+                  <span className="font-mono text-xs text-[#444444] dark:text-[#CCCCCC] mt-0.5 block">
                     {formatCurrency(item.price)}
                   </span>
                 </div>
 
                 {/* Quantity Controls */}
                 <div className="flex items-center justify-between pt-2">
-                  <div className="flex items-center border border-[#0A0A0A] rounded-btn">
+                  <div className="flex items-center border border-[#DDDDDD] dark:border-[#333333] rounded-btn text-[#000000] dark:text-[#FFFFFF]">
                     <button
                       type="button"
                       onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                       aria-label="Decrease quantity"
-                      className="w-7 h-7 flex items-center justify-center hover:bg-[#F5F5F5] transition-colors"
+                      className="w-7 h-7 flex items-center justify-center hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] transition-colors"
                     >
                       <Minus className="w-3 h-3" />
                     </button>
@@ -212,12 +212,12 @@ export function CartDrawer() {
                       onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                       disabled={item.quantity >= item.stock}
                       aria-label="Increase quantity"
-                      className="w-7 h-7 flex items-center justify-center hover:bg-[#F5F5F5] transition-colors disabled:opacity-40"
+                      className="w-7 h-7 flex items-center justify-center hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] transition-colors disabled:opacity-40"
                     >
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
-                  <span className="font-mono text-xs font-semibold text-[#0A0A0A]">
+                  <span className="font-mono text-xs font-semibold text-[#000000] dark:text-[#FFFFFF]">
                     {formatCurrency(item.price * item.quantity)}
                   </span>
                 </div>

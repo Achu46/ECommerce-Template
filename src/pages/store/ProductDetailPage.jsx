@@ -41,8 +41,8 @@ export function ProductDetailPage() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h2 className="text-xl font-bold uppercase mb-2">Item Not Found</h2>
-        <p className="text-sm text-[#525252] mb-6">The requested product could not be found in our database.</p>
+        <h2 className="text-xl font-bold uppercase mb-2 text-[#000000] dark:text-[#FFFFFF]">Item Not Found</h2>
+        <p className="text-sm text-[#444444] dark:text-[#CCCCCC] mb-6">The requested product could not be found in our database.</p>
         <Link to="/products">
           <Button variant="primary">Return to Collection</Button>
         </Link>
@@ -70,25 +70,25 @@ export function ProductDetailPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 w-full">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 w-full text-[#000000] dark:text-[#FFFFFF]">
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumbs" className="flex items-center gap-1.5 text-xs font-mono text-[#737373] mb-6 sm:mb-8">
-        <Link to="/" className="hover:text-[#0A0A0A] transition-colors">
+      <nav aria-label="Breadcrumbs" className="flex items-center gap-1.5 text-xs font-mono text-[#444444] dark:text-[#CCCCCC] mb-6 sm:mb-8">
+        <Link to="/" className="hover:text-[#000000] dark:hover:text-[#FFFFFF] transition-colors">
           Home
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <Link to="/products" className="hover:text-[#0A0A0A] transition-colors">
+        <Link to="/products" className="hover:text-[#000000] dark:hover:text-[#FFFFFF] transition-colors">
           Products
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
         <Link
           to={`/products?category=${encodeURIComponent(product.category)}`}
-          className="hover:text-[#0A0A0A] transition-colors"
+          className="hover:text-[#000000] dark:hover:text-[#FFFFFF] transition-colors"
         >
           {product.category}
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-[#0A0A0A] font-semibold truncate max-w-[150px] sm:max-w-none">
+        <span className="text-[#000000] dark:text-[#FFFFFF] font-semibold truncate max-w-[150px] sm:max-w-none">
           {product.name}
         </span>
       </nav>
@@ -99,7 +99,7 @@ export function ProductDetailPage() {
         {/* Left Column: Gallery (6 cols) */}
         <div className="lg:col-span-7 flex flex-col gap-4">
           {/* Hero Main Image View */}
-          <div className="w-full aspect-[4/5] bg-[#F5F5F5] border border-[#E5E5E5] rounded-card overflow-hidden relative">
+          <div className="w-full aspect-[4/5] bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card overflow-hidden relative">
             <ProductImage
               src={images[selectedImageIndex] || images[0]}
               alt={`${product.name} preview`}
@@ -127,8 +127,8 @@ export function ProductDetailPage() {
                   type="button"
                   onClick={() => setSelectedImageIndex(idx)}
                   className={`w-20 h-24 shrink-0 rounded-btn border overflow-hidden transition-all ${selectedImageIndex === idx
-                      ? 'border-2 border-[#0A0A0A] ring-1 ring-[#0A0A0A]'
-                      : 'border-[#E5E5E5] opacity-60 hover:opacity-100'
+                      ? 'border-2 border-black ring-1 ring-black dark:border-white dark:ring-white'
+                      : 'border-[#DDDDDD] dark:border-[#333333] opacity-60 hover:opacity-100'
                     }`}
                 >
                   <ProductImage src={img} alt={`Thumbnail ${idx + 1}`} aspectRatio="aspect-[4/5]" />
@@ -140,13 +140,13 @@ export function ProductDetailPage() {
 
         {/* Right Column: Information & Controls (5 cols) */}
         <div className="lg:col-span-5 flex flex-col justify-start">
-          <div className="border-b border-[#E5E5E5] pb-6">
-            <div className="flex items-center justify-between gap-2 mb-2 font-mono text-xs text-[#737373]">
+          <div className="border-b border-[#DDDDDD] dark:border-[#333333] pb-6">
+            <div className="flex items-center justify-between gap-2 mb-2 font-mono text-xs text-[#444444] dark:text-[#CCCCCC]">
               <span>SKU: {product.sku}</span>
               <button
                 type="button"
                 onClick={handleShare}
-                className="inline-flex items-center gap-1 hover:text-[#0A0A0A] transition-colors"
+                className="inline-flex items-center gap-1 hover:text-[#000000] dark:hover:text-[#FFFFFF] transition-colors"
                 title="Share product link"
               >
                 <Share2 className="w-3.5 h-3.5" />
@@ -154,14 +154,14 @@ export function ProductDetailPage() {
               </button>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A] leading-tight mb-3">
+            <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF] leading-tight mb-3">
               {product.name}
             </h1>
 
             {/* Rating and Stock */}
             <div className="flex items-center gap-4 mb-4">
               <ProductRating rating={product.rating} count={product.reviewsCount} />
-              <span className="text-[#E5E5E5]">|</span>
+              <span className="text-[#DDDDDD] dark:text-[#333333]">|</span>
               {isOutOfStock ? (
                 <Badge status="out_of_stock" size="sm" />
               ) : isLowStock ? (
@@ -175,11 +175,11 @@ export function ProductDetailPage() {
 
             {/* Price Box */}
             <div className="flex items-baseline gap-3 font-mono">
-              <span className="text-3xl font-black text-[#0A0A0A]">
+              <span className="text-3xl font-black text-[#000000] dark:text-[#FFFFFF]">
                 {formatCurrency(product.price)}
               </span>
               {product.originalPrice && product.originalPrice > product.price && (
-                <span className="text-lg text-[#A3A3A3] line-through">
+                <span className="text-lg text-[#666666] dark:text-[#888888] line-through">
                   {formatCurrency(product.originalPrice)}
                 </span>
               )}
@@ -187,21 +187,21 @@ export function ProductDetailPage() {
           </div>
 
           {/* Description */}
-          <div className="py-6 border-b border-[#E5E5E5]">
-            <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">
+          <div className="py-6 border-b border-[#DDDDDD] dark:border-[#333333]">
+            <p className="text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
               {product.description}
             </p>
 
             {/* Features Bullet Points */}
             {product.features && product.features.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-[#F5F5F5]">
-                <h4 className="text-xs font-mono uppercase font-bold tracking-wider text-[#0A0A0A] mb-2">
+              <div className="mt-4 pt-4 border-t border-[#DDDDDD] dark:border-[#333333]">
+                <h4 className="text-xs font-mono uppercase font-bold tracking-wider text-[#000000] dark:text-[#FFFFFF] mb-2">
                   Engineering Specifications
                 </h4>
-                <ul className="space-y-1.5 text-xs text-[#525252] font-mono">
+                <ul className="space-y-1.5 text-xs text-[#444444] dark:text-[#CCCCCC] font-mono">
                   {product.features.map((feat, index) => (
                     <li key={index} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-[#0A0A0A] rounded-full shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-[#000000] dark:bg-[#FFFFFF] rounded-full shrink-0" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -214,17 +214,17 @@ export function ProductDetailPage() {
           <div className="py-6 space-y-4">
             <div className="flex items-center gap-4">
               {/* Quantity Picker */}
-              <div className="flex items-center border border-[#0A0A0A] rounded-btn">
+              <div className="flex items-center border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A]">
                 <button
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   aria-label="Decrease quantity"
                   disabled={quantity <= 1 || isOutOfStock}
-                  className="w-11 h-11 flex items-center justify-center hover:bg-[#F5F5F5] transition-colors disabled:opacity-40"
+                  className="w-11 h-11 flex items-center justify-center hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] transition-colors disabled:opacity-40"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="w-12 text-center text-sm font-mono font-bold">
+                <span className="w-12 text-center text-sm font-mono font-bold text-[#000000] dark:text-[#FFFFFF]">
                   {quantity}
                 </span>
                 <button
@@ -232,7 +232,7 @@ export function ProductDetailPage() {
                   onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
                   aria-label="Increase quantity"
                   disabled={quantity >= product.stock || isOutOfStock}
-                  className="w-11 h-11 flex items-center justify-center hover:bg-[#F5F5F5] transition-colors disabled:opacity-40"
+                  className="w-11 h-11 flex items-center justify-center hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] transition-colors disabled:opacity-40"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -255,10 +255,10 @@ export function ProductDetailPage() {
                 type="button"
                 onClick={() => toggleWishlist(product)}
                 aria-label={isFavorited ? 'Remove from wishlist' : 'Add to wishlist'}
-                className="w-12 h-12 min-w-[48px] rounded-btn border border-[#E5E5E5] flex items-center justify-center hover:border-[#0A0A0A] hover:bg-[#F5F5F5] transition-colors"
+                className="w-12 h-12 min-w-[48px] rounded-btn border border-[#DDDDDD] dark:border-[#333333] flex items-center justify-center hover:border-black dark:hover:border-white hover:bg-[#F5F5F5] dark:hover:bg-[#1A1A1A] transition-colors text-[#000000] dark:text-[#FFFFFF]"
               >
                 <Heart
-                  className={`w-5 h-5 ${isFavorited ? 'fill-[#0A0A0A] text-[#0A0A0A]' : 'text-[#0A0A0A]'
+                  className={`w-5 h-5 ${isFavorited ? 'fill-current text-[#000000] dark:text-[#FFFFFF]' : 'text-[#000000] dark:text-[#FFFFFF]'
                     }`}
                 />
               </button>
@@ -266,14 +266,14 @@ export function ProductDetailPage() {
           </div>
 
           {/* Tabs: Specifications, Shipping, Solitude Guarantee */}
-          <div className="border-t border-[#E5E5E5] pt-4">
-            <div className="flex border-b border-[#E5E5E5] text-xs font-mono uppercase tracking-wider">
+          <div className="border-t border-[#DDDDDD] dark:border-[#333333] pt-4">
+            <div className="flex border-b border-[#DDDDDD] dark:border-[#333333] text-xs font-mono uppercase tracking-wider">
               <button
                 type="button"
                 onClick={() => setActiveTab('specs')}
                 className={`py-2 px-3 border-b-2 font-bold transition-colors ${activeTab === 'specs'
-                    ? 'border-[#0A0A0A] text-[#0A0A0A]'
-                    : 'border-transparent text-[#737373] hover:text-[#0A0A0A]'
+                    ? 'border-black dark:border-white text-[#000000] dark:text-[#FFFFFF]'
+                    : 'border-transparent text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF]'
                   }`}
               >
                 Details
@@ -282,8 +282,8 @@ export function ProductDetailPage() {
                 type="button"
                 onClick={() => setActiveTab('shipping')}
                 className={`py-2 px-3 border-b-2 font-bold transition-colors ${activeTab === 'shipping'
-                    ? 'border-[#0A0A0A] text-[#0A0A0A]'
-                    : 'border-transparent text-[#737373] hover:text-[#0A0A0A]'
+                    ? 'border-black dark:border-white text-[#000000] dark:text-[#FFFFFF]'
+                    : 'border-transparent text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF]'
                   }`}
               >
                 Shipping & Delivery
@@ -292,25 +292,25 @@ export function ProductDetailPage() {
                 type="button"
                 onClick={() => setActiveTab('returns')}
                 className={`py-2 px-3 border-b-2 font-bold transition-colors ${activeTab === 'returns'
-                    ? 'border-[#0A0A0A] text-[#0A0A0A]'
-                    : 'border-transparent text-[#737373] hover:text-[#0A0A0A]'
+                    ? 'border-black dark:border-white text-[#000000] dark:text-[#FFFFFF]'
+                    : 'border-transparent text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF]'
                   }`}
               >
                 Returns & Trial
               </button>
             </div>
 
-            <div className="py-4 text-xs text-[#525252] leading-relaxed">
+            <div className="py-4 text-xs text-[#444444] dark:text-[#CCCCCC] leading-relaxed">
               {activeTab === 'specs' && (
                 <div className="space-y-2">
                   <p>All items undergo strict structural quality verification prior to dispatch.</p>
-                  <p>Category: <strong className="text-[#0A0A0A]">{product.category}</strong> {product.subcategory && `(${product.subcategory})`}</p>
-                  <p>Stock Status: <strong className="text-[#0A0A0A]">{product.stock} units</strong> warehouse ready.</p>
+                  <p>Category: <strong className="text-[#000000] dark:text-[#FFFFFF]">{product.category}</strong> {product.subcategory && `(${product.subcategory})`}</p>
+                  <p>Stock Status: <strong className="text-[#000000] dark:text-[#FFFFFF]">{product.stock} units</strong> warehouse ready.</p>
                 </div>
               )}
               {activeTab === 'shipping' && (
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-[#0A0A0A] font-semibold">
+                  <div className="flex items-center gap-2 text-[#000000] dark:text-[#FFFFFF] font-semibold">
                     <Truck className="w-4 h-4" /> Global Carbon-Neutral Delivery
                   </div>
                   <p>Complimentary shipping applied automatically for orders exceeding $150. Domestic transit takes 2-4 business days.</p>
@@ -318,7 +318,7 @@ export function ProductDetailPage() {
               )}
               {activeTab === 'returns' && (
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-[#0A0A0A] font-semibold">
+                  <div className="flex items-center gap-2 text-[#000000] dark:text-[#FFFFFF] font-semibold">
                     <RotateCcw className="w-4 h-4" /> 30-Day Solitude Guarantee
                   </div>
                   <p>If the material or silhouette does not satisfy your functional requirements, return in original box within 30 days for a full refund.</p>
@@ -330,10 +330,10 @@ export function ProductDetailPage() {
       </div>
 
       {/* Sticky Mobile Add-to-Cart Bar (<640px) */}
-      <div className="sm:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-[#E5E5E5] p-3 flex items-center gap-3 z-30 shadow-drawer">
+      <div className="sm:hidden fixed bottom-0 inset-x-0 bg-white/95 dark:bg-[#111111]/95 backdrop-blur-md border-t border-[#DDDDDD] dark:border-[#333333] p-3 flex items-center gap-3 z-30 shadow-drawer">
         <div className="flex flex-col">
-          <span className="text-[10px] text-[#737373] font-mono">TOTAL</span>
-          <span className="font-mono text-sm font-bold text-[#0A0A0A]">
+          <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC] font-mono">TOTAL</span>
+          <span className="font-mono text-sm font-bold text-[#000000] dark:text-[#FFFFFF]">
             {formatCurrency(product.price * quantity)}
           </span>
         </div>
@@ -351,22 +351,22 @@ export function ProductDetailPage() {
           type="button"
           onClick={() => toggleWishlist(product)}
           aria-label="Wishlist"
-          className="p-2.5 border border-[#E5E5E5] rounded-btn text-[#0A0A0A]"
+          className="p-2.5 border border-[#DDDDDD] dark:border-[#333333] rounded-btn text-[#000000] dark:text-[#FFFFFF] bg-white dark:bg-[#111111]"
         >
-          <Heart className={`w-5 h-5 ${isFavorited ? 'fill-[#0A0A0A]' : ''}`} />
+          <Heart className={`w-5 h-5 ${isFavorited ? 'fill-current text-[#000000] dark:text-[#FFFFFF]' : ''}`} />
         </button>
       </div>
 
       {/* Related Curations */}
       {relatedProducts.length > 0 && (
-        <section className="pt-12 border-t border-[#E5E5E5]">
+        <section className="pt-12 border-t border-[#DDDDDD] dark:border-[#333333]">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-xl font-bold tracking-tight text-[#0A0A0A]">
+            <h3 className="text-xl font-bold tracking-tight text-[#000000] dark:text-[#FFFFFF]">
               You May Also Like
             </h3>
             <Link
               to={`/products?category=${encodeURIComponent(product.category)}`}
-              className="text-xs font-mono uppercase font-bold hover:underline"
+              className="text-xs font-mono uppercase font-bold text-[#000000] dark:text-[#FFFFFF] hover:underline"
             >
               More in {product.category} →
             </Link>

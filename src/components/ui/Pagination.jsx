@@ -39,8 +39,8 @@ export function Pagination({
       aria-label="Pagination Navigation"
     >
       {totalItems !== undefined && (
-        <span className="text-[#525252] font-mono">
-          Showing <strong className="text-[#0A0A0A]">{startItem}</strong> - <strong className="text-[#0A0A0A]">{endItem}</strong> of <strong className="text-[#0A0A0A]">{totalItems}</strong>
+        <span className="text-[#444444] dark:text-[#CCCCCC] font-mono">
+          Showing <strong className="text-[#000000] dark:text-[#FFFFFF]">{startItem}</strong> - <strong className="text-[#000000] dark:text-[#FFFFFF]">{endItem}</strong> of <strong className="text-[#000000] dark:text-[#FFFFFF]">{totalItems}</strong>
         </span>
       )}
 
@@ -59,7 +59,7 @@ export function Pagination({
         {getPageNumbers().map((p, idx) => {
           if (p === '...') {
             return (
-              <span key={`ellipsis-${idx}`} className="px-2 text-[#A3A3A3] font-mono">
+              <span key={`ellipsis-${idx}`} className="px-2 text-[#444444] dark:text-[#CCCCCC] font-mono">
                 ...
               </span>
             );
@@ -74,8 +74,8 @@ export function Pagination({
               aria-current={isActive ? 'page' : undefined}
               aria-label={`Page ${p}`}
               className={`min-w-[36px] h-9 px-2 font-mono text-xs rounded-btn font-medium transition-colors ${isActive
-                  ? 'bg-[#0A0A0A] text-white border border-[#0A0A0A]'
-                  : 'bg-white text-[#0A0A0A] border border-[#E5E5E5] hover:border-[#0A0A0A] hover:bg-[#F5F5F5]'
+                  ? 'bg-black text-white border border-black dark:bg-white dark:text-black dark:border-white'
+                  : 'bg-transparent text-[#000000] dark:text-[#FFFFFF] border border-[#DDDDDD] dark:border-[#333333] hover:border-black dark:hover:border-white hover:bg-[#F5F5F5] dark:hover:bg-[#111111]'
                 }`}
             >
               {p}

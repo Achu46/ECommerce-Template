@@ -17,11 +17,11 @@ export function ProductImage({
   if (hasError || !src) {
     return (
       <div
-        className={`w-full ${aspectRatio} bg-[#F5F5F5] border border-[#E5E5E5] flex flex-col items-center justify-center p-4 text-[#A3A3A3] select-none ${className}`}
+        className={`w-full ${aspectRatio} bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] flex flex-col items-center justify-center p-4 text-[#444444] dark:text-[#CCCCCC] select-none ${className}`}
         aria-label={`${alt} (image unavailable)`}
       >
-        <ImageOff className="w-8 h-8 stroke-1 text-[#A3A3A3] mb-1.5" />
-        <span className="text-[11px] font-mono uppercase tracking-wider text-[#737373]">
+        <ImageOff className="w-8 h-8 stroke-1 text-[#444444] dark:text-[#CCCCCC] mb-1.5" />
+        <span className="text-[11px] font-mono uppercase tracking-wider text-[#444444] dark:text-[#CCCCCC]">
           MONO ARCHIVE
         </span>
       </div>
@@ -29,9 +29,9 @@ export function ProductImage({
   }
 
   return (
-    <div className={`relative overflow-hidden bg-[#F5F5F5] ${aspectRatio} ${className}`}>
+    <div className={`relative overflow-hidden bg-[#F5F5F5] dark:bg-[#111111] ${aspectRatio} ${className}`}>
       {!isLoaded && (
-        <div className="absolute inset-0 bg-[#F5F5F5] animate-pulse" />
+        <div className="absolute inset-0 bg-[#E5E5E5] dark:bg-[#1A1A1A] animate-pulse" />
       )}
       <img
         src={src}

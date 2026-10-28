@@ -66,36 +66,35 @@ export function AdminOrdersPage() {
   };
 
   return (
-    <div className="space-y-6 pb-12">
+    <div className="space-y-6 pb-12 text-[#000000] dark:text-[#FFFFFF]">
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E5E5]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#DDDDDD] dark:border-[#333333]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-1">
             Fulfillment Pipeline
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A]">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
             Consignment Orders ({orders.length})
           </h1>
         </div>
 
         {/* Quick status count badges */}
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-          <span className="px-2.5 py-1 bg-[#F5F5F5] rounded border border-[#E5E5E5]">
+          <span className="px-2.5 py-1 bg-[#F5F5F5] dark:bg-[#111111] rounded border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF]">
             Pending: <strong>{orders.filter((o) => o.status === 'pending').length}</strong>
           </span>
-          <span className="px-2.5 py-1 bg-[#F5F5F5] rounded border border-[#E5E5E5]">
+          <span className="px-2.5 py-1 bg-[#F5F5F5] dark:bg-[#111111] rounded border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF]">
             Processing: <strong>{orders.filter((o) => o.status === 'processing').length}</strong>
           </span>
-          <span className="px-2.5 py-1 bg-[#F5F5F5] rounded border border-[#E5E5E5]">
+          <span className="px-2.5 py-1 bg-[#F5F5F5] dark:bg-[#111111] rounded border border-[#DDDDDD] dark:border-[#333333] text-[#000000] dark:text-[#FFFFFF]">
             Shipped: <strong>{orders.filter((o) => o.status === 'shipped').length}</strong>
           </span>
         </div>
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card p-4 shadow-subtle flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card p-4 shadow-subtle flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#737373] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
@@ -103,9 +102,12 @@ export function AdminOrdersPage() {
               setSearchQuery(e.target.value);
               setCurrentPage(1);
             }}
-            placeholder="Search by Order ID, customer, tracking..."
-            className="w-full min-h-[44px] pl-10 pr-4 py-2 text-xs border border-[#E5E5E5] rounded-input bg-white focus:border-[#0A0A0A]"
+            placeholder="Search...."
+            className="w-full min-h-[44px] pl-4 pr-12 py-2 text-xs border border-[#DDDDDD] dark:border-[#333333] rounded-xl bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white placeholder:text-[#444444]/60 dark:placeholder:text-[#CCCCCC]/60"
           />
+          <div className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-[#F5F5F5] dark:bg-[#161616] border border-[#DDDDDD] dark:border-[#333333] flex items-center justify-center text-[#000000] dark:text-[#FFFFFF] pointer-events-none shadow-subtle">
+            <Search className="w-4 h-4" />
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
@@ -115,7 +117,7 @@ export function AdminOrdersPage() {
               setStatusFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="min-h-[44px] px-3 text-xs font-mono border border-[#E5E5E5] rounded-btn bg-white focus:border-[#0A0A0A]"
+            className="min-h-[44px] px-3 text-xs font-mono border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white"
           >
             <option value="all">All Statuses ({orders.length})</option>
             <option value="pending">Pending</option>
@@ -128,10 +130,10 @@ export function AdminOrdersPage() {
       </div>
 
       {/* Orders Table */}
-      <div className="bg-white border border-[#E5E5E5] rounded-card shadow-subtle overflow-hidden">
+      <div className="bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card shadow-subtle overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#F5F5F5] border-b border-[#E5E5E5] text-[#737373] uppercase text-[10px]">
+            <thead className="bg-white dark:bg-[#0A0A0A] border-b border-[#DDDDDD] dark:border-[#333333] text-[#444444] dark:text-[#CCCCCC] uppercase text-[10px]">
               <tr>
                 <th className="py-3 px-4">Order ID</th>
                 <th className="py-3 px-4">Patron</th>
@@ -142,28 +144,28 @@ export function AdminOrdersPage() {
                 <th className="py-3 px-4 text-right">Inspect</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E5E5E5]">
+            <tbody className="divide-y divide-[#DDDDDD] dark:divide-[#333333]">
               {paginatedOrders.map((ord) => (
-                <tr key={ord.id} className="hover:bg-[#FAFAFA] transition-colors">
-                  <td className="py-3 px-4 font-bold text-[#0A0A0A]">{ord.id}</td>
+                <tr key={ord.id} className="hover:bg-[#EBEBEB] dark:hover:bg-[#1C1C1C] focus-within:bg-[#EBEBEB] dark:focus-within:bg-[#1C1C1C] transition-colors">
+                  <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">{ord.id}</td>
                   <td className="py-3 px-4">
-                    <span className="font-semibold text-[#0A0A0A] block">{ord.customer.name}</span>
-                    <span className="text-[10px] text-[#737373]">{ord.customer.email}</span>
+                    <span className="font-semibold text-[#000000] dark:text-[#FFFFFF] block">{ord.customer.name}</span>
+                    <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC]">{ord.customer.email}</span>
                   </td>
-                  <td className="py-3 px-4 text-[#525252]">
+                  <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">
                     {formatDateTime(ord.createdAt)}
                   </td>
-                  <td className="py-3 px-4 text-[#525252]">
+                  <td className="py-3 px-4 text-[#444444] dark:text-[#CCCCCC]">
                     {ord.items?.reduce((s, i) => s + (i.quantity || 1), 0)} unit(s)
                   </td>
-                  <td className="py-3 px-4 font-bold text-[#0A0A0A]">
+                  <td className="py-3 px-4 font-bold text-[#000000] dark:text-[#FFFFFF]">
                     {formatCurrency(ord.total)}
                   </td>
                   <td className="py-3 px-4">
                     <select
                       value={ord.status}
                       onChange={(e) => handleStatusChange(ord.id, e.target.value)}
-                      className="px-2 py-1 text-xs font-mono rounded border border-[#E5E5E5] bg-white text-[#0A0A0A] focus:border-[#0A0A0A]"
+                      className="px-2 py-1 text-xs font-mono rounded border border-[#DDDDDD] dark:border-[#333333] bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] focus:border-black dark:focus:border-white"
                     >
                       <option value="pending">Pending</option>
                       <option value="processing">Processing</option>
@@ -176,7 +178,7 @@ export function AdminOrdersPage() {
                     <button
                       type="button"
                       onClick={() => setSelectedOrder(ord)}
-                      className="p-1.5 text-[#525252] hover:text-[#0A0A0A] hover:bg-[#F5F5F5] rounded transition-colors inline-flex items-center gap-1"
+                      className="p-1.5 text-[#444444] dark:text-[#CCCCCC] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] rounded transition-colors inline-flex items-center gap-1"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -187,7 +189,7 @@ export function AdminOrdersPage() {
           </table>
         </div>
 
-        <div className="p-4 border-t border-[#E5E5E5]">
+        <div className="p-4 border-t border-[#DDDDDD] dark:border-[#333333]">
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
@@ -208,20 +210,20 @@ export function AdminOrdersPage() {
         >
           <div className="space-y-6 text-xs font-mono">
             {/* Status change header */}
-            <div className="p-4 bg-[#F5F5F5] border border-[#E5E5E5] rounded-card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="p-4 bg-[#F5F5F5] dark:bg-[#111111] border border-[#DDDDDD] dark:border-[#333333] rounded-card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="text-[10px] text-[#737373] uppercase tracking-wider block mb-1">
+                <span className="text-[10px] text-[#444444] dark:text-[#CCCCCC] uppercase tracking-wider block mb-1">
                   Active Status
                 </span>
                 <Badge status={selectedOrder.status} size="md" />
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-[#525252]">Update:</span>
+                <span className="text-[#444444] dark:text-[#CCCCCC]">Update:</span>
                 <select
                   value={selectedOrder.status}
                   onChange={(e) => handleStatusChange(selectedOrder.id, e.target.value)}
-                  className="px-3 py-1.5 text-xs font-mono rounded-btn border border-[#0A0A0A] bg-white font-bold"
+                  className="px-3 py-1.5 text-xs font-mono rounded-btn border border-[#DDDDDD] dark:border-[#333333] bg-white dark:bg-[#0A0A0A] text-[#000000] dark:text-[#FFFFFF] font-bold"
                 >
                   <option value="pending">Pending</option>
                   <option value="processing">Processing</option>
@@ -234,30 +236,30 @@ export function AdminOrdersPage() {
 
             {/* Destination & Meta */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 border border-[#E5E5E5] rounded-btn">
-                <h4 className="font-bold uppercase text-[#0A0A0A] mb-2 flex items-center gap-1.5">
+              <div className="p-4 border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A]">
+                <h4 className="font-bold uppercase text-[#000000] dark:text-[#FFFFFF] mb-2 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5" /> Patron & Address
                 </h4>
-                <p className="font-bold text-[#0A0A0A]">{selectedOrder.customer.name}</p>
-                <p className="text-[#525252]">{selectedOrder.customer.email}</p>
-                <p className="text-[#525252] mt-2 leading-relaxed">
+                <p className="font-bold text-[#000000] dark:text-[#FFFFFF]">{selectedOrder.customer.name}</p>
+                <p className="text-[#444444] dark:text-[#CCCCCC]">{selectedOrder.customer.email}</p>
+                <p className="text-[#444444] dark:text-[#CCCCCC] mt-2 leading-relaxed">
                   {selectedOrder.shippingAddress?.street}<br />
                   {selectedOrder.shippingAddress?.city}, {selectedOrder.shippingAddress?.state} {selectedOrder.shippingAddress?.postalCode}<br />
                   {selectedOrder.shippingAddress?.country}
                 </p>
               </div>
 
-              <div className="p-4 border border-[#E5E5E5] rounded-btn">
-                <h4 className="font-bold uppercase text-[#0A0A0A] mb-2 flex items-center gap-1.5">
+              <div className="p-4 border border-[#DDDDDD] dark:border-[#333333] rounded-btn bg-white dark:bg-[#0A0A0A]">
+                <h4 className="font-bold uppercase text-[#000000] dark:text-[#FFFFFF] mb-2 flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" /> Telemetry & Settlement
                 </h4>
-                <p className="text-[#525252]">Placed: {formatDateTime(selectedOrder.createdAt)}</p>
-                <p className="text-[#525252] mt-1">Settlement: {selectedOrder.paymentMethod}</p>
-                <p className="text-[#0A0A0A] font-bold mt-1">
+                <p className="text-[#444444] dark:text-[#CCCCCC]">Placed: {formatDateTime(selectedOrder.createdAt)}</p>
+                <p className="text-[#444444] dark:text-[#CCCCCC] mt-1">Settlement: {selectedOrder.paymentMethod}</p>
+                <p className="text-[#000000] dark:text-[#FFFFFF] font-bold mt-1">
                   Tracking: {selectedOrder.trackingNumber || 'Awaiting Allocation'}
                 </p>
                 {selectedOrder.notes && (
-                  <p className="mt-2 text-[11px] text-[#737373] italic">
+                  <p className="mt-2 text-[11px] text-[#444444] dark:text-[#CCCCCC] italic">
                     Note: "{selectedOrder.notes}"
                   </p>
                 )}
@@ -266,24 +268,24 @@ export function AdminOrdersPage() {
 
             {/* Items Manifest */}
             <div>
-              <h4 className="font-bold uppercase text-[#0A0A0A] mb-3 border-b border-[#E5E5E5] pb-2">
+              <h4 className="font-bold uppercase text-[#000000] dark:text-[#FFFFFF] mb-3 border-b border-[#DDDDDD] dark:border-[#333333] pb-2">
                 Manifest Line Items ({selectedOrder.items?.length || 0})
               </h4>
-              <div className="space-y-2.5 divide-y divide-[#F5F5F5]">
+              <div className="space-y-2.5 divide-y divide-[#DDDDDD] dark:divide-[#333333]">
                 {selectedOrder.items?.map((item, idx) => (
                   <div key={idx} className="pt-2.5 first:pt-0 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 border border-[#E5E5E5] rounded overflow-hidden shrink-0">
+                      <div className="w-10 h-10 border border-[#DDDDDD] dark:border-[#333333] rounded overflow-hidden shrink-0">
                         <ProductImage src={item.image} alt={item.name} aspectRatio="aspect-square" />
                       </div>
                       <div>
-                        <span className="font-bold text-[#0A0A0A] block">{item.name}</span>
-                        <span className="text-[11px] text-[#737373]">
+                        <span className="font-bold text-[#000000] dark:text-[#FFFFFF] block">{item.name}</span>
+                        <span className="text-[11px] text-[#444444] dark:text-[#CCCCCC]">
                           {item.quantity} × {formatCurrency(item.price)}
                         </span>
                       </div>
                     </div>
-                    <span className="font-bold text-[#0A0A0A]">
+                    <span className="font-bold text-[#000000] dark:text-[#FFFFFF]">
                       {formatCurrency(item.price * item.quantity)}
                     </span>
                   </div>
@@ -292,26 +294,26 @@ export function AdminOrdersPage() {
             </div>
 
             {/* Financial Reconciliation */}
-            <div className="border-t border-[#E5E5E5] pt-3 space-y-1 text-right text-xs">
-              <div className="flex justify-between text-[#525252]">
+            <div className="border-t border-[#DDDDDD] dark:border-[#333333] pt-3 space-y-1 text-right text-xs">
+              <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
                 <span>Subtotal</span>
                 <span>{formatCurrency(selectedOrder.subtotal)}</span>
               </div>
               {selectedOrder.discount > 0 && (
-                <div className="flex justify-between text-[#0A0A0A]">
+                <div className="flex justify-between text-[#000000] dark:text-[#FFFFFF]">
                   <span>Discount</span>
                   <span>-{formatCurrency(selectedOrder.discount)}</span>
                 </div>
               )}
-              <div className="flex justify-between text-[#525252]">
+              <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
                 <span>Shipping</span>
                 <span>{formatCurrency(selectedOrder.shipping)}</span>
               </div>
-              <div className="flex justify-between text-[#525252]">
+              <div className="flex justify-between text-[#444444] dark:text-[#CCCCCC]">
                 <span>Tax</span>
                 <span>{formatCurrency(selectedOrder.tax)}</span>
               </div>
-              <div className="flex justify-between text-sm font-black text-[#0A0A0A] pt-2 border-t border-[#E5E5E5]">
+              <div className="flex justify-between text-sm font-black text-[#000000] dark:text-[#FFFFFF] pt-2 border-t border-[#DDDDDD] dark:border-[#333333]">
                 <span>Total Settled</span>
                 <span>{formatCurrency(selectedOrder.total)}</span>
               </div>

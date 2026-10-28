@@ -32,20 +32,20 @@ export function FAQPage() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full flex-1 text-[#000000] dark:text-[#FFFFFF]">
       <div className="mb-10 sm:mb-14 text-center">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-[#737373] block mb-2">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-[#444444] dark:text-[#CCCCCC] block mb-2">
           Knowledge Base
         </span>
-        <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#0A0A0A]">
+        <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#000000] dark:text-[#FFFFFF]">
           Frequently Asked Questions
         </h1>
-        <p className="text-xs sm:text-sm text-[#525252] mt-2 max-w-md mx-auto">
+        <p className="text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] mt-2 max-w-md mx-auto">
           Essential clarifications regarding materials, fulfillment protocols, and portfolio demo operations.
         </p>
       </div>
 
-      <div className="space-y-3 divide-y divide-[#E5E5E5] border-y border-[#E5E5E5]">
+      <div className="space-y-3 divide-y divide-[#DDDDDD] dark:divide-[#333333] border-y border-[#DDDDDD] dark:border-[#333333]">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
@@ -56,17 +56,17 @@ export function FAQPage() {
                 aria-expanded={isOpen}
                 className="w-full text-left py-2 flex items-center justify-between gap-4 group"
               >
-                <span className="text-sm font-bold uppercase tracking-wide text-[#0A0A0A] group-hover:underline">
+                <span className="text-sm font-bold uppercase tracking-wide text-[#000000] dark:text-[#FFFFFF] group-hover:underline">
                   {faq.q}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-[#525252] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#0A0A0A]' : ''
+                  className={`w-4 h-4 text-[#444444] dark:text-[#CCCCCC] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#000000] dark:text-[#FFFFFF]' : ''
                     }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="pt-2 text-xs sm:text-sm text-[#525252] leading-relaxed font-sans animate-fadeIn">
+                <div className="pt-2 text-xs sm:text-sm text-[#444444] dark:text-[#CCCCCC] leading-relaxed font-sans animate-fadeIn">
                   {faq.a}
                 </div>
               )}

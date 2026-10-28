@@ -36,6 +36,22 @@ export function AuthProvider({ children }) {
   const login = (email, password) => {
     const cleanEmail = email.trim().toLowerCase();
 
+    // Check custom credentials if updated via password reset
+    let customPassword = null;
+    try {
+      const stored = localStorage.getItem('mono_user_credentials');
+      if (stored) {
+        const creds = JSON.parse(stored);
+        customPassword = creds[cleanEmail];
+      }
+    } catch {
+      // Ignore parse error
+    }
+
+    if (customPassword && password !== customPassword) {
+      return { success: false, error: 'Invalid email or password' };
+    }
+
     if (cleanEmail === 'admin@mono.com') {
       setCurrentUser(DEMO_ADMIN);
       toast.success('Admin Session Initialized', 'Welcome back to MONO™ Command.');
@@ -59,6 +75,18 @@ export function AuthProvider({ children }) {
     setCurrentUser(genericUser);
     toast.success('Session Initialized', `Logged in as ${genericUser.name}`);
     return { success: true, user: genericUser };
+  };
+
+  const updateUserPassword = (email, newPassword) => {
+    try {
+      const cleanEmail = email.trim().toLowerCase();
+      const raw = localStorage.getItem('mono_user_credentials');
+      const creds = raw ? JSON.parse(raw) : {};
+      creds[cleanEmail] = newPassword;
+      localStorage.setItem('mono_user_credentials', JSON.stringify(creds));
+    } catch (e) {
+      console.warn('Failed to update user password:', e);
+    }
   };
 
   const register = (userData) => {
@@ -90,7 +118,8 @@ export function AuthProvider({ children }) {
         login,
         register,
         logout,
-        setCurrentUser
+        setCurrentUser,
+        updateUserPassword
       }}
     >
       {children}

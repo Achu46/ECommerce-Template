@@ -63,25 +63,25 @@ export function ToastProvider({ children }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="pointer-events-auto bg-white text-mono-primary border-2 border-mono-primary shadow-modal rounded-btn p-3.5 flex items-start gap-3 relative"
+                className="pointer-events-auto bg-white dark:bg-[#111111] text-[#000000] dark:text-[#FFFFFF] border-2 border-[#000000] dark:border-[#FFFFFF] shadow-modal rounded-btn p-3.5 flex items-start gap-3 relative"
               >
-                <div className="mt-0.5 p-1 bg-mono-subtle rounded border border-mono-border">
-                  <IconComponent className="w-4 h-4 text-mono-primary" />
+                <div className="mt-0.5 p-1 bg-[#F5F5F5] dark:bg-[#0A0A0A] rounded border border-[#DDDDDD] dark:border-[#333333]">
+                  <IconComponent className="w-4 h-4 text-[#000000] dark:text-[#FFFFFF]" />
                 </div>
                 <div className="flex-1 pr-6">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-[10px] tracking-wider font-mono uppercase px-1.5 py-0.5 bg-mono-primary text-white rounded">
+                    <span className="text-[10px] tracking-wider font-mono uppercase px-1.5 py-0.5 bg-black text-white dark:bg-white dark:text-black rounded">
                       {badgeText}
                     </span>
-                    {t.title && <h4 className="text-xs font-bold uppercase tracking-wide">{t.title}</h4>}
+                    {t.title && <h4 className="text-xs font-bold uppercase tracking-wide text-[#000000] dark:text-[#FFFFFF]">{t.title}</h4>}
                   </div>
-                  {t.message && <p className="text-xs text-mono-secondary leading-relaxed">{t.message}</p>}
+                  {t.message && <p className="text-xs text-[#444444] dark:text-[#CCCCCC] leading-relaxed">{t.message}</p>}
                 </div>
                 <button
                   type="button"
                   onClick={() => removeToast(t.id)}
                   aria-label="Dismiss notification"
-                  className="absolute top-2.5 right-2.5 p-1 text-mono-muted hover:text-mono-primary rounded transition-colors"
+                  className="absolute top-2.5 right-2.5 p-1 text-[#737373] hover:text-[#000000] dark:text-[#888888] dark:hover:text-[#FFFFFF] rounded transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>

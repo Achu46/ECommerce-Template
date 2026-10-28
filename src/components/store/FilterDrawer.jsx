@@ -59,19 +59,19 @@ export function FilterDrawer({
         </div>
       }
     >
-      <div className="flex flex-col gap-6 divide-y divide-[#E5E5E5] text-xs">
+      <div className="flex flex-col gap-6 divide-y divide-[#DDDDDD] dark:divide-[#333333] text-xs">
         {/* Sort Section */}
         <div className="flex flex-col gap-2.5">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#737373]">
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#444444] dark:text-[#CCCCCC]">
             Sort By
           </span>
           <div className="flex flex-col gap-1">
             {sortOptions.map((opt) => (
               <label
                 key={opt.value}
-                className="flex items-center justify-between p-2 rounded-btn hover:bg-[#F5F5F5] cursor-pointer"
+                className="flex items-center justify-between p-2 rounded-btn hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] cursor-pointer"
               >
-                <span className={sortBy === opt.value ? 'font-bold text-[#0A0A0A]' : 'text-[#525252]'}>
+                <span className={sortBy === opt.value ? 'font-bold text-[#000000] dark:text-[#FFFFFF]' : 'text-[#444444] dark:text-[#CCCCCC]'}>
                   {opt.label}
                 </span>
                 <input
@@ -80,7 +80,7 @@ export function FilterDrawer({
                   value={opt.value}
                   checked={sortBy === opt.value}
                   onChange={(e) => onSortChange(e.target.value)}
-                  className="accent-[#0A0A0A] w-4 h-4 cursor-pointer"
+                  className="accent-black dark:accent-white w-4 h-4 cursor-pointer"
                 />
               </label>
             ))}
@@ -89,7 +89,7 @@ export function FilterDrawer({
 
         {/* Categories Section */}
         <div className="pt-4 flex flex-col gap-2.5">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#737373]">
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#444444] dark:text-[#CCCCCC]">
             Category
           </span>
           <div className="flex flex-col gap-1">
@@ -100,8 +100,8 @@ export function FilterDrawer({
                 onSelectSubcategory('');
               }}
               className={`w-full text-left py-2 px-2.5 rounded-btn transition-colors ${!selectedCategory
-                  ? 'bg-[#0A0A0A] text-white font-semibold'
-                  : 'text-[#525252] hover:bg-[#F5F5F5]'
+                  ? 'bg-black text-white dark:bg-white dark:text-black font-semibold'
+                  : 'text-[#444444] dark:text-[#CCCCCC] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A]'
                 }`}
             >
               All Categories
@@ -115,8 +115,8 @@ export function FilterDrawer({
                   onSelectSubcategory('');
                 }}
                 className={`w-full text-left py-2 px-2.5 rounded-btn transition-colors ${selectedCategory === cat.name
-                    ? 'bg-[#0A0A0A] text-white font-semibold'
-                    : 'text-[#525252] hover:bg-[#F5F5F5]'
+                    ? 'bg-black text-white dark:bg-white dark:text-black font-semibold'
+                    : 'text-[#444444] dark:text-[#CCCCCC] hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A]'
                   }`}
               >
                 {cat.name}
@@ -128,7 +128,7 @@ export function FilterDrawer({
         {/* Subcategories (if selected) */}
         {subcategories.length > 0 && (
           <div className="pt-4 flex flex-col gap-2.5">
-            <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#737373]">
+            <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#444444] dark:text-[#CCCCCC]">
               Subcategory
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -140,8 +140,8 @@ export function FilterDrawer({
                     type="button"
                     onClick={() => onSelectSubcategory(isSelected ? '' : sub)}
                     className={`px-3 py-1.5 rounded-full border text-[11px] font-mono transition-colors ${isSelected
-                        ? 'border-[#0A0A0A] bg-[#0A0A0A] text-white'
-                        : 'border-[#E5E5E5] bg-white text-[#525252] hover:border-[#0A0A0A]'
+                        ? 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black'
+                        : 'border-[#DDDDDD] dark:border-[#333333] bg-white dark:bg-[#111111] text-[#444444] dark:text-[#CCCCCC] hover:border-[#000000] dark:hover:border-[#FFFFFF]'
                       }`}
                   >
                     {sub}
@@ -154,7 +154,7 @@ export function FilterDrawer({
 
         {/* Price Range */}
         <div className="pt-4 flex flex-col gap-2.5">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#737373]">
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#444444] dark:text-[#CCCCCC]">
             Price Limit (Max: ${priceRange})
           </span>
           <input
@@ -164,27 +164,27 @@ export function FilterDrawer({
             step="10"
             value={priceRange}
             onChange={(e) => onPriceChange(Number(e.target.value))}
-            className="w-full accent-[#0A0A0A] cursor-pointer"
+            className="w-full accent-black dark:accent-white cursor-pointer"
           />
-          <div className="flex justify-between font-mono text-[11px] text-[#525252]">
+          <div className="flex justify-between font-mono text-[11px] text-[#444444] dark:text-[#CCCCCC]">
             <span>$40</span>
-            <span className="font-bold text-[#0A0A0A]">${priceRange}</span>
+            <span className="font-bold text-[#000000] dark:text-[#FFFFFF]">${priceRange}</span>
             <span>$600+</span>
           </div>
         </div>
 
         {/* Rating Filter */}
         <div className="pt-4 flex flex-col gap-2.5">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#737373]">
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#444444] dark:text-[#CCCCCC]">
             Customer Rating
           </span>
           <div className="flex flex-col gap-1">
             {ratingOptions.map((opt) => (
               <label
                 key={opt.value}
-                className="flex items-center justify-between p-2 rounded-btn hover:bg-[#F5F5F5] cursor-pointer"
+                className="flex items-center justify-between p-2 rounded-btn hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] cursor-pointer"
               >
-                <span className={minRating === opt.value ? 'font-bold text-[#0A0A0A]' : 'text-[#525252]'}>
+                <span className={minRating === opt.value ? 'font-bold text-[#000000] dark:text-[#FFFFFF]' : 'text-[#444444] dark:text-[#CCCCCC]'}>
                   {opt.label}
                 </span>
                 <input
@@ -193,7 +193,7 @@ export function FilterDrawer({
                   value={opt.value}
                   checked={minRating === opt.value}
                   onChange={() => onRatingChange(opt.value)}
-                  className="accent-[#0A0A0A] w-4 h-4 cursor-pointer"
+                  className="accent-black dark:accent-white w-4 h-4 cursor-pointer"
                 />
               </label>
             ))}
@@ -202,27 +202,27 @@ export function FilterDrawer({
 
         {/* Toggles (In Stock, On Sale) */}
         <div className="pt-4 flex flex-col gap-2">
-          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#737373]">
+          <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#444444] dark:text-[#CCCCCC]">
             Availability & Offers
           </span>
 
-          <label className="flex items-center justify-between p-2 rounded-btn hover:bg-[#F5F5F5] cursor-pointer">
-            <span className="text-[#0A0A0A]">In-Stock Only</span>
+          <label className="flex items-center justify-between p-2 rounded-btn hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] cursor-pointer">
+            <span className="text-[#000000] dark:text-[#FFFFFF]">In-Stock Only</span>
             <input
               type="checkbox"
               checked={inStockOnly}
               onChange={(e) => onToggleInStock(e.target.checked)}
-              className="accent-[#0A0A0A] w-4 h-4 rounded cursor-pointer"
+              className="accent-black dark:accent-white w-4 h-4 rounded cursor-pointer"
             />
           </label>
 
-          <label className="flex items-center justify-between p-2 rounded-btn hover:bg-[#F5F5F5] cursor-pointer">
-            <span className="text-[#0A0A0A]">Archive Sale Items</span>
+          <label className="flex items-center justify-between p-2 rounded-btn hover:bg-[#EEEEEE] dark:hover:bg-[#1A1A1A] cursor-pointer">
+            <span className="text-[#000000] dark:text-[#FFFFFF]">Archive Sale Items</span>
             <input
               type="checkbox"
               checked={onSaleOnly}
               onChange={(e) => onToggleOnSale(e.target.checked)}
-              className="accent-[#0A0A0A] w-4 h-4 rounded cursor-pointer"
+              className="accent-black dark:accent-white w-4 h-4 rounded cursor-pointer"
             />
           </label>
         </div>
